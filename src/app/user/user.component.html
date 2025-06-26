@@ -1,0 +1,69 @@
+<div class="user-container">
+    <!-- Hidden file input for avatar upload -->
+    
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="userActions"
+      aria-label="User menu">
+      <span class="relative">
+        @if (showAvatar && user.avatar) {
+          <img
+            class="w-7 h-7 rounded-full object-cover"
+            [src]="user.avatar"
+            alt="User avatar"
+            >
+        }
+        @if (!showAvatar || !user.avatar) {
+          <mat-icon>account_circle</mat-icon>
+        }
+        <span
+          class="absolute right-0 bottom-0 w-2 h-2 rounded-full border border-white"
+          [ngClass]="{
+            'bg-green-500': user.status === 'online',
+            'bg-amber-500': user.status === 'away',
+            'bg-red-500': user.status === 'busy',
+            'bg-gray-400': user.status === 'not-visible'
+          }">
+        </span>
+      </span>
+    </button>
+  
+    <mat-menu #userActions="matMenu" xPosition="before" class="user-menu">
+      <button mat-menu-item>
+        <mat-icon>account_circle</mat-icon>
+        <span class="ml-2">Profile</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span class="ml-2">Settings</span>
+      </button>
+      <button mat-menu-item [matMenuTriggerFor]="userStatus">
+        <mat-icon>more_vert</mat-icon>
+        <span class="ml-2">Status</span>
+      </button>
+      <mat-divider class="my-2"></mat-divider>
+      <button mat-menu-item (click)="signOut()">
+        <mat-icon>logout</mat-icon>
+        <span class="ml-2">Sign out</span>
+      </button>
+    </mat-menu>
+  
+    <mat-menu #userStatus="matMenu" class="status-menu">
+      <button mat-menu-item (click)="updateUserStatus('online')">
+        <span class="status-dot online"></span>
+        <span>Online</span>
+      </button>
+      <button mat-menu-item (click)="updateUserStatus('away')">
+        <span class="status-dot away"></span>
+        <span>Away</span>
+      </button>
+      <button mat-menu-item (click)="updateUserStatus('busy')">
+        <span class="status-dot busy"></span>
+        <span>Busy</span>
+      </button>
+      <button mat-menu-item (click)="updateUserStatus('not-visible')">
+        <span class="status-dot not-visible"></span>
+        <span>Invisible</span>
+      </button>
+    </mat-menu>
+  </div>

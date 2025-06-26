@@ -1,0 +1,75 @@
+<mat-card class="p-6 bg-white dark:bg-gray-800 shadow-3xl rounded-lg">
+  <mat-card-header>
+    <button (click)="cancel()" class="absolute top-0 right-0 flex justify-center items-center p-2 rounded-full hover:bg-gray-100">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-card-title class="flex justify-between items-center">
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100" style="font-family: 'Roboto, sans-serif';">
+        {{ data?.category ? 'Edit Category' : 'Add Category' }}
+      </h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    
+    <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex flex-col min-h-[6rem]">
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" required placeholder="Category Name">
+            <mat-error *ngIf="categoryForm.get('name')?.hasError('required') && categoryForm.get('name')?.touched">
+              Category Name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="flex flex-col min-h-[6rem]">
+          <mat-form-field>
+            <mat-label>Icon</mat-label>
+            <input matInput formControlName="icon" required placeholder="Material Icon Name (e.g., star)">
+            <mat-error *ngIf="categoryForm.get('icon')?.hasError('required') && categoryForm.get('icon')?.touched">
+              Icon is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="flex flex-col min-h-[6rem]">
+          <mat-form-field>
+            <mat-label>Image URL</mat-label>
+            <input matInput formControlName="imageUrl" required placeholder="Image URL">
+            <mat-error *ngIf="categoryForm.get('imageUrl')?.hasError('required') && categoryForm.get('imageUrl')?.touched">
+              Image URL is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="flex flex-col min-h-[6rem]">
+          <mat-form-field>
+            <mat-label>Comments</mat-label>
+            <input matInput formControlName="comments" placeholder="Comments">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="mt-4 flex justify-end gap-2">
+        <button
+          mat-button
+          type="button"
+          (click)="cancel()"
+          class="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400 transition"
+          style="font-family: 'Roboto, sans-serif';"
+          aria-label="Cancel category form"
+        >
+          Cancel
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="categoryForm.invalid"
+          class="hover:bg-blue-700 transition"
+          style="font-family: 'Roboto, sans-serif';"
+          [attr.aria-label]="data?.category ? 'Update category' : 'Save category'"
+        >
+          {{ data?.category ? 'Update' : 'Save' }}
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

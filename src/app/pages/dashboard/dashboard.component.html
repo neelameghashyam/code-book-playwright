@@ -1,0 +1,308 @@
+<div class="container mx-auto max-w-4xl p-4 sm:p-6 font-sans bg-white dark:bg-gray-900 transition-colors duration-300">
+  <mat-card class="p-6 bg-white dark:bg-gray-800 shadow-3xl rounded-lg">
+    <mat-card-header>
+      <mat-card-title class="flex justify-between items-center">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ 'addBusinessForm' | translate }}</h2>
+        <button *ngIf="readOnly" (click)="enableEditMode()" 
+                class="absolute top-4 right-4 flex p-6"
+                [attr.aria-label]="'edit' | translate">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-card-title>
+      <mat-card-subtitle class="text-gray-900 dark:text-gray-400 mt-2">
+        {{ 'fillBusinessFields' | translate }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="providerForm" (ngSubmit)="onSubmit()">
+        <div class="flex flex-col md:flex-row gap-4 md:gap-6">
+          <!-- Left Column -->
+          <div class="flex-1 flex flex-col gap-4">
+            <!-- Country -->
+            <div class="flex flex-col min-h-[6rem]">
+              <label for="country" class="text-sm font-bold text-gray-700 dark:text-gray-200">{{ 'country' | translate }}</label>
+              <select
+                id="country"
+                formControlName="country"
+                autocomplete="country"
+                class="p-2 border rounded text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 h-10"
+                [ngClass]="{
+                  'border-[#D7373C]': providerForm.get('country')?.invalid && providerForm.get('country')?.touched,
+                  'bg-gray-100 dark:bg-gray-700': readOnly
+                }"
+                aria-required="true"
+                [attr.aria-invalid]="providerForm.get('country')?.invalid && providerForm.get('country')?.touched"
+                aria-describedby="countryError"
+              >
+                <option value="" disabled>{{ 'selectCountry' | translate }}</option>
+                <option *ngFor="let country of countries" [value]="country">
+                  {{ country }}
+                </option>
+              </select>
+              <small
+                id="countryError"
+                class="text-xs text-[#D7373C] dark:text-[#F87171] mt-1 error-message"
+                [ngClass]="{
+                  'visible opacity-100': providerForm.get('country')?.invalid && providerForm.get('country')?.touched,
+                  'invisible opacity-0': !(providerForm.get('country')?.invalid && providerForm.get('country')?.touched)
+                }"
+              >
+                {{ 'countryRequired' | translate }}
+              </small>
+            </div>
+
+            <!-- Address Line 1 -->
+            <div class="flex flex-col min-h-[6rem]">
+              <label for="addressLine1" class="text-sm font-bold text-gray-700 dark:text-gray-200">{{ 'addressLine1' | translate }}</label>
+              <input
+                id="addressLine1"
+                type="text"
+                formControlName="addressLine1"
+                autocomplete="address-line1"
+                [placeholder]="'addressLine1Placeholder' | translate"
+                class="p-2 border rounded text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400 h-10"
+                [ngClass]="{
+                  'border-[#D7373C] dark:border-[#F87171]': providerForm.get('addressLine1')?.invalid && providerForm.get('addressLine1')?.touched,
+                  'bg-gray-100 dark:bg-gray-700': readOnly
+                }"
+                aria-required="true"
+                [attr.aria-invalid]="providerForm.get('addressLine1')?.invalid && providerForm.get('addressLine1')?.touched"
+                aria-describedby="addressLine1Error"
+              />
+              <small
+                id="addressLine1Error"
+                class="text-xs text-[#D7373C] dark:text-[#F87171] mt-1 error-message"
+                [ngClass]="{
+                  'visible opacity-100': providerForm.get('addressLine1')?.invalid && providerForm.get('addressLine1')?.touched,
+                  'invisible opacity-0': !(providerForm.get('addressLine1')?.invalid && providerForm.get('addressLine1')?.touched)
+                }"
+              >
+                {{ 'addressLine1Required' | translate }}
+              </small>
+            </div>
+
+            <!-- Address Line 3 -->
+            <div class="flex flex-col min-h-[6rem]">
+              <label for="addressLine3" class="text-sm font-bold text-gray-700 dark:text-gray-200">{{ 'addressLine3' | translate }}</label>
+              <input
+                id="addressLine3"
+                type="text"
+                formControlName="addressLine3"
+                autocomplete="address-line3"
+                [placeholder]="'addressLine3Placeholder' | translate"
+                class="p-2 border rounded text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400 h-10"
+                [ngClass]="{'bg-gray-100 dark:bg-gray-700': readOnly}"
+              />
+              <small class="text-xs text-transparent mt-1 error-message">Placeholder</small>
+            </div>
+
+            <!-- State / Province -->
+            <div class="flex flex-col min-h-[6rem]">
+              <label for="state" class="text-sm font-bold text-gray-700 dark:text-gray-200">{{ 'stateProvince' | translate }}</label>
+              <input
+                id="state"
+                type="text"
+                formControlName="state"
+                autocomplete="address-level1"
+                [placeholder]="'statePlaceholder' | translate"
+                class="p-2 border rounded text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400 h-10"
+                [ngClass]="{
+                  'border-[#D7373C] dark:border-[#F87171]': providerForm.get('state')?.invalid && providerForm.get('state')?.touched,
+                  'bg-gray-100 dark:bg-gray-700': readOnly
+                }"
+                [attr.aria-invalid]="providerForm.get('state')?.invalid && providerForm.get('state')?.touched"
+                aria-describedby="stateError"
+              />
+              <small
+                id="stateError"
+                class="text-xs text-[#D7373C] dark:text-[#F87171] mt-1 error-message"
+                [ngClass]="{
+                  'visible opacity-100': providerForm.get('state')?.invalid && providerForm.get('state')?.touched,
+                  'invisible opacity-0': !(providerForm.get('state')?.invalid && providerForm.get('state')?.touched)
+                }"
+              >
+                {{ 'stateInvalid' | translate }}
+              </small>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="flex-1 flex flex-col gap-4">
+            <!-- Business Name -->
+            <div class="flex flex-col min-h-[6rem]">
+              <label for="businessName" class="text-sm font-bold text-gray-700 dark:text-gray-200">{{ 'businessName' | translate }}</label>
+              <input
+                id="businessName"
+                type="text"
+                formControlName="businessName"
+                autocomplete="organization"
+                [placeholder]="'businessNamePlaceholder' | translate"
+                class="p-2 border rounded text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400 h-10"
+                [ngClass]="{
+                  'border-[#D7373C] dark:border-[#F87171]': providerForm.get('businessName')?.invalid && providerForm.get('businessName')?.touched,
+                  'bg-gray-100 dark:bg-gray-700': readOnly
+                }"
+                aria-required="true"
+                [attr.aria-invalid]="providerForm.get('businessName')?.invalid && providerForm.get('businessName')?.touched"
+                aria-describedby="businessNameError"
+              />
+              <small
+                id="businessNameError"
+                class="text-xs text-[#D7373C] dark:text-[#F87171] mt-1 error-message"
+                [ngClass]="{
+                  'visible opacity-100': providerForm.get('businessName')?.invalid && providerForm.get('businessName')?.touched,
+                  'invisible opacity-0': !(providerForm.get('businessName')?.invalid && providerForm.get('businessName')?.touched)
+                }"
+              >
+                {{ 'businessNameInvalid' | translate }}
+              </small>
+            </div>
+
+            <!-- Address Line 2 -->
+            <div class="flex flex-col min-h-[6rem]">
+              <label for="addressLine2" class="text-sm font-bold text-gray-700 dark:text-gray-200">{{ 'addressLine2' | translate }}</label>
+              <input
+                id="addressLine2"
+                type="text"
+                formControlName="addressLine2"
+                autocomplete="address-line2"
+                [placeholder]="'addressLine2Placeholder' | translate"
+                class="p-2 border rounded text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400 h-10"
+                [ngClass]="{'bg-gray-100 dark:bg-gray-700': readOnly}"
+              />
+              <small class="text-xs text-transparent mt-1 error-message">Placeholder</small>
+            </div>
+
+            <!-- City / Town -->
+            <div class="flex flex-col min-h-[6rem]">
+              <label for="city" class="text-sm font-bold text-gray-700 dark:text-gray-200">{{ 'cityTown' | translate }}</label>
+              <input
+                id="city"
+                type="text"
+                formControlName="city"
+                autocomplete="address-level2"
+                [placeholder]="'cityPlaceholder' | translate"
+                class="p-2 border rounded text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400 h-10"
+                [ngClass]="{
+                  'border-[#D7373C] dark:border-[#F87171]': providerForm.get('city')?.invalid && providerForm.get('city')?.touched,
+                  'bg-gray-100 dark:bg-gray-700': readOnly
+                }"
+                aria-required="true"
+                [attr.aria-invalid]="providerForm.get('city')?.invalid && providerForm.get('city')?.touched"
+                aria-describedby="cityError"
+              />
+              <small
+                id="cityError"
+                class="text-xs text-[#D7373C] dark:text-[#F87171] mt-1 error-message"
+                [ngClass]="{
+                  'visible opacity-100': providerForm.get('city')?.invalid && providerForm.get('city')?.touched,
+                  'invisible opacity-0': !(providerForm.get('city')?.invalid && providerForm.get('city')?.touched)
+                }"
+              >
+                {{ 'cityRequired' | translate }}
+              </small>
+            </div>
+
+            <!-- Postal Code / Zip Code -->
+            <div class="flex flex-col min-h-[6rem]">
+              <label for="postalCode" class="text-sm font-bold text-gray-700 dark:text-gray-200">{{ 'postalCode' | translate }}</label>
+              <input
+                id="postalCode"
+                type="text"
+                formControlName="postalCode"
+                autocomplete="postal-code"
+                [placeholder]="'postalCodePlaceholder' | translate"
+                class="p-2 border rounded text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400 h-10"
+                [ngClass]="{
+                  'border-[#D7373C] dark:border-[#F87171]': providerForm.get('postalCode')?.invalid && providerForm.get('postalCode')?.touched,
+                  'bg-gray-100 dark:bg-gray-700': readOnly
+                }"
+                aria-required="true"
+                [attr.aria-invalid]="providerForm.get('postalCode')?.invalid && providerForm.get('postalCode')?.touched"
+                aria-describedby="postalCodeError"
+              />
+              <small
+                id="postalCodeError"
+                class="text-xs text-[#D7373C] dark:text-[#F87171] mt-1 error-message"
+                [ngClass]="{
+                  'visible opacity-100': providerForm.get('postalCode')?.invalid && providerForm.get('postalCode')?.touched,
+                  'invisible opacity-0': !(providerForm.get('postalCode')?.invalid && providerForm.get('postalCode')?.touched)
+                }"
+              >
+                {{ 'postalCodeInvalid' | translate }}
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Providers -->
+        <div class="flex flex-col gap-2 mt-6" *ngIf="!readOnly">
+          <p>{{ 'serviceProviders' | translate }}</p>
+          <div (click)="openPopup()" class="flex items-center gap-1 text-[#CF4500] hover:text-[#B53C00] dark:text-[#CF4500] dark:hover:text-[#B53C00] cursor-pointer">
+            <mat-icon>add_circle</mat-icon>
+            <span>{{ 'addServiceProvider' | translate }}</span>
+          </div>
+        </div>
+
+        <!-- Service Providers Table -->
+        <div class="p-4 mt-6">
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead class="bg-gray-50 dark:bg-gray-800">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ 'serviceProviderName' | translate }}</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ 'address' | translate }}</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ 'actions' | translate }}</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+                <tr *ngFor="let provider of serviceProviders; let i = index">
+                  <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">{{ provider.spName }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
+                    {{ provider.addressLine1 }}
+                  </td>
+                  <td class="px-6 py-4 text-sm" *ngIf="!readOnly">
+                    <button
+                      (click)="editServiceProvider(i)"
+                      class="text-[#CF4500] hover:text-[#B53C00] dark:text-[#CF4500] dark:hover:text-[#B53C00]"
+                      [attr.aria-label]="'edit' | translate"
+                    >
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button
+                      (click)="deleteServiceProvider(i)"
+                      class="text-[#CF4500] hover:text-[#B53C00] dark:text-[#CF4500] dark:hover:text-[#B53C00]"
+                      [attr.aria-label]="'delete' | translate"
+                    >
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+    <div align="end" class="p-4" *ngIf="!readOnly">
+      <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+        <button
+          (click)="onCancel()"
+          class="bg-[#CF4500] text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-[#B53C00] focus:ring-2 focus:ring-[#CF4500] w-full sm:w-32 uppercase transition-colors duration-200"
+          [attr.aria-label]="'cancel' | translate"
+        >
+          {{ 'cancel' | translate }}
+        </button>
+        <button
+          type="submit"
+          class="bg-[#CF4500] text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-[#B53C00] focus:ring-2 focus:ring-[#CF4500] w-full sm:w-32 uppercase transition-colors duration-200"
+          [disabled]="providerForm.invalid"
+          (click)="onSubmit()"
+          [attr.aria-label]="'submit' | translate"
+        >
+          {{ 'submit' | translate }}
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>

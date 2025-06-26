@@ -1,0 +1,40 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "module": "ES2022",
+    "target": "ES2022",
+    "moduleResolution": "bundler",
+    "importHelpers": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/@types/aria-query",
+      "node_modules/@types/estree",
+      "node_modules/@types/json-schema",
+      "node_modules/@types/mdx",
+      "node_modules/@types/uuid",
+      "node_modules/@types/webpack-env"
+    ],
+    "lib": [
+      "dom",
+      "es2022"
+    ],
+    "paths": {
+      "@services/*": [
+        "app/services/*"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}
