@@ -1,27 +1,27 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-100">
+<div class="min-h-screen flex items-center justify-center bg-gray-100" data-testid="login-container">
   <!-- Left Side: Image (Visible only on desktop) -->
-  <div class="hidden lg:flex w-2/5 items-center justify-center">
+  <div class="hidden lg:flex w-2/5 items-center justify-center" data-testid="image-container">
     <img src="https://svg.io/images/examples/flat_fox-surrounded-by-stars.svg" alt="Login Illustration" class="max-w-xl w-full h-auto object-contain" />
   </div>
 
   <!-- Right Side: Form (Visible on all devices) -->
-  <div class="w-full lg:w-3/5 flex items-center justify-center p-4 sm:p-4">
+  <div class="w-full lg:w-3/5 flex items-center justify-center p-4 sm:p-4" data-testid="login-form">
     <mat-card class="p-4 sm:p-20 w-full max-w-md sm:max-w-lg" style="font-family: 'Poppins', sans-serif !important">
       <!-- Heading -->
-      <mat-card-title class="text-3xl sm:text-5xl font-bold text-center mb-4">
+      <mat-card-title class="text-3xl sm:text-5xl font-bold text-center mb-4" data-testid="card-title">
         <h1 style="color: #1E88E5 !important; font-weight: 600 !important; font-family: 'Poppins', sans-serif !important">
           Welcome,<br />please authorize
         </h1>
       </mat-card-title>
       <!-- Social Login Buttons (only for login) -->
-      <div class="flex justify-center space-x-4 mt-4 p-4">
-        <button mat-icon-button class="border border-[#E0E0E0] rounded-full p-2" aria-label="Sign in with Facebook">
+      <div class="flex justify-center space-x-4 mt-4 p-4" data-testid="social-login-buttons">
+        <button mat-icon-button data-testid="facebook-login" class="border border-[#E0E0E0] rounded-full p-2" aria-label="Sign in with Facebook">
           <img src="assets/facebook.png" alt="Facebook" class="w-8 h-8" />
         </button>
-        <button mat-icon-button class="border border-[#E0E0E0] rounded-full p-2" aria-label="Sign in with Apple">
+        <button mat-icon-button data-testid="apple-login" class="border border-[#E0E0E0] rounded-full p-2" aria-label="Sign in with Apple">
           <img src="assets/apple-logo.png" alt="Apple" class="w-8 h-8" />
         </button>
-        <button mat-icon-button class="border border-[#E0E0E0] rounded-full p-2" aria-label="Sign in with Google">
+        <button mat-icon-button data-testid="google-login" class="border border-[#E0E0E0] rounded-full p-2" aria-label="Sign in with Google">
           <img src="assets/google.png" alt="Google" class="w-8 h-8" />
         </button>
       </div>
