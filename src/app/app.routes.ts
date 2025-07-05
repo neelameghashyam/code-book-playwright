@@ -4,8 +4,10 @@ import { MainDashboardComponent } from './main-dashboard/main-dashboard.componen
 import { LoginComponent } from './login/login/login.component';
 import { AuthGuard } from './auth.guard';
 import { MainDashboard2Component } from './main-dashboard-2/main-dashboard-2.component';
+import { DemoComponent } from './demo/demo.component';
 
 export const routes: Routes = [
+ 
   {
     path: 'dashboard-selector',
     component: DashboardSelectorComponent,
@@ -60,7 +62,7 @@ export const routes: Routes = [
         path: 'dashboard',
         loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent),
       },
-      {
+     {
         path: 'pincode',
         loadComponent: () => import('./pages/pincodes/pincodes.component').then(m => m.PincodesComponent),
       },
@@ -77,17 +79,18 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/users/users.component').then(m => m.UsersComponent),
       },
       {
-        path: 'business',
-        loadComponent: () => import('./pages/business/business.component').then(m => m.BusinessComponent),
+        path: 'mat-components',
+        loadComponent: () => import('./pages/mat-components/mat-components.component').then(m => m.MatComponentsComponent),
       },
-      {
-        path: 'business-list',
-        loadComponent: () => import('./pages/business/list-businesses/list-businesses.component').then(m => m.ListBusinessesComponent),
-      },
+     
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
   },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'dashboard-selector', pathMatch: 'full' },
+   {
+    path: 'app-demo',
+    component: DemoComponent
+  },
   { path: '**', redirectTo: 'dashboard-selector' },
 ];

@@ -43,10 +43,9 @@ export class CustomSidenav2Component {
       subItems: [{ icon: 'dashboard_customize', label: 'SUBCATEGORIES', route: 'sub-categories' }],
       isExpanded: false,
     },
-    { icon: 'pin_drop', label: 'PINCODES', route: 'pincodes' },
-    { icon: 'shopping_cart', label: 'PRODUCTS', route: 'products' },
+    { icon: 'pin_drop', label: 'PINCODES', route: 'pincode' },
     { icon: 'people', label: 'USERS', route: 'users' },
-    { icon: 'receipt_long', label: 'ORDERS', route: 'orders' },
+    { icon: 'reorder', label: 'MAT-COMPONENT', route: 'mat-components' },
   ]);
 
   constructor(

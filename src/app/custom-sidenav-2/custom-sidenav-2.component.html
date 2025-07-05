@@ -29,14 +29,13 @@
           {{ item.icon }}
         </span>
         <span
-          *ngIf="!sideNavCollapsed() || responsiveService.isMobile()"
-          class="font-medium"
-          style="font-family: 'Poppins', sans-serif !important"
-          [style.color]="rla.isActive ? 'var(--mat-sys-primary)' : 'var(--mat-sys-on-surface)'"
-          [style.font-weight]="rla.isActive ? '600' : '500'"
-        >
-          {{ item.label | translate }}
-        </span>
+  *ngIf="!sideNavCollapsed() || responsiveService.isMobile()"
+  style="font-family: Roboto, 'Helvetica Neue', sans-serif !important; font-size: 14px"
+  [style.color]="rla.isActive ? 'var(--mat-sys-primary)' : 'var(--mat-sys-on-surface)'"
+  [style.font-weight]="rla.isActive ? '600' : '500'"
+>
+  {{ item.label | translate }}
+</span>
         <span
           *ngIf="item.subItems && (!sideNavCollapsed() || responsiveService.isMobile())"
           class="ml-auto material-icons-outlined"
@@ -50,7 +49,7 @@
       <!-- Submenu items -->
       <div
         *ngIf="item.subItems && item.isExpanded && (!sideNavCollapsed() || responsiveService.isMobile())"
-        class="ml-6 flex flex-col gap-1"
+        class="ml-4 flex flex-col gap-1"
       >
         <a
           *ngFor="let subItem of item.subItems"
@@ -72,10 +71,9 @@
             {{ subItem.icon }}
           </span>
           <span
-            class="font-medium"
-            style="font-family: 'Poppins', sans-serif !important"
+            style="font-family: Roboto, 'Helvetica Neue', sans-serif !important; font-size: 14px"
             [style.color]="subRla.isActive ? 'var(--mat-sys-primary)' : 'var(--mat-sys-on-surface)'"
-            [style.font-weight]="subRla.isActive ? '600' : '500'"
+            [style.font-weight]="subRla.isActive ? '500' : '500'"
           >
             {{ subItem.label | translate }}
           </span>

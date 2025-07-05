@@ -1,0 +1,122 @@
+<mat-toolbar class="bg-blue-600 text-white shadow-md flex items-center px-4 py-2">
+  <span class="text-lg font-semibold">User Management</span>
+  <span class="flex-grow"></span>
+  <button mat-raised-button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md text-sm" (click)="openAddDialog()">
+    Add New User
+  </button>
+  <button mat-icon-button class="hover:bg-blue-700 rounded-full p-1" (click)="refreshTable()" title="Refresh Table">
+    <mat-icon>refresh</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="m-4 p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg">
+  <!-- Error Display -->
+  <div *ngIf="error()" class="mb-4 p-3 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 rounded-md text-sm">
+    {{ error() }}
+  </div>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading()" class="flex justify-center items-center py-4">
+    <mat-spinner diameter="30"></mat-spinner>
+  </div>
+
+  <!-- Filters -->
+  <div class="flex flex-wrap gap-4 mb-4" *ngIf="!isLoading()">
+    <!-- Global Search -->
+    <mat-form-field appearance="fill" class="w-60 sm:max-w-80">
+      <mat-label class="text-xs">Search</mat-label>
+      <input matInput [(ngModel)]="filterValues.global" (ngModelChange)="applyFilter()" placeholder="Search users..." class="text-sm text-gray-900 dark:text-gray-100">
+    </mat-form-field>
+
+    <!-- First Name Filter -->
+    <mat-form-field appearance="fill" class="w-44 sm:max-w-80">
+      <mat-label class="text-xs">First Name</mat-label>
+      <input matInput [(ngModel)]="filterValues.firstName" (ngModelChange)="applyFilter()" class="text-sm text-gray-900 dark:text-gray-100">
+    </mat-form-field>
+
+    <!-- Email Filter -->
+    <mat-form-field appearance="fill" class="w-44 sm:max-w-80">
+      <mat-label class="text-xs">Email</mat-label>
+      <input matInput [(ngModel)]="filterValues.email" (ngModelChange)="applyFilter()" class="text-sm text-gray-900 dark:text-gray-100">
+    </mat-form-field>
+
+    <!-- Role Filter -->
+    <mat-form-field appearance="fill" class="w-44 sm:max-w-80">
+      <mat-label class="text-xs">Role</mat-label>
+      <mat-select [(ngModel)]="filterValues.role" multiple (ngModelChange)="applyFilter()" class="text-sm text-gray-900 dark:text-gray-100">
+        <mat-option *ngFor="let role of roles" [value]="role" class="text-sm">{{role}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Start Date Filter -->
+    <mat-form-field appearance="fill" class="w-44 sm:max-w-80">
+      <mat-label class="text-xs">Start Date</mat-label>
+      <input matInput [matDatepicker]="startPicker" [(ngModel)]="filterValues.startDate" (ngModelChange)="applyFilter()" class="text-sm text-gray-900 dark:text-gray-100">
+      <mat-datepicker-toggle matSuffix [for]="startPicker" class="text-sm"></mat-datepicker-toggle>
+      <mat-datepicker #startPicker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- End Date Filter -->
+    <mat-form-field appearance="fill" class="w-44 sm:max-w-80">
+      <mat-label class="text-xs">End Date</mat-label>
+      <input matInput [matDatepicker]="endPicker" [(ngModel)]="filterValues.endDate" (ngModelChange)="applyFilter()" class="text-sm text-gray-900 dark:text-gray-100">
+      <mat-datepicker-toggle matSuffix [for]="endPicker" class="text-sm"></mat-datepicker-toggle>
+      <mat-datepicker #endPicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <!-- Material Table -->
+  <div class="overflow-x-auto" *ngIf="!isLoading()">
+    <table mat-table [dataSource]="dataSource" matSort class="w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 text-sm">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="font-semibold p-2">ID</th>
+        <td mat-cell *matCellDef="let user" class="p-2">{{user.id}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="font-semibold p-2">First Name</th>
+        <td mat-cell *matCellDef="let user" class="p-2">{{user.firstName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="font-semibold p-2">Email</th>
+        <td mat-cell *matCellDef="let user" class="p-2">{{user.email}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="font-semibold p-2">Role</th>
+        <td mat-cell *matCellDef="let user" class="p-2">{{user.role}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="font-semibold p-2">Created Date</th>
+        <td mat-cell *matCellDef="let user" class="p-2">{{user.createdDate | date:'short'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="font-semibold p-2">Actions</th>
+        <td mat-cell *matCellDef="let user" class="p-2">
+          <button mat-icon-button (click)="openEditDialog(user)" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteUser(user.id)" class="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="bg-gray-100 dark:bg-gray-700"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" class="hover:bg-gray-50 dark:hover:bg-gray-600"></tr>
+    </table>
+  </div>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    [pageSize]="pageSize()"
+    [pageIndex]="currentPage() - 1"
+    [length]="filteredUsers().length"
+    showFirstLastButtons
+    (page)="onPageChange($event)"
+    class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-2"
+  ></mat-paginator>
+</div>
