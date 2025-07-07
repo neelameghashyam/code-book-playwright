@@ -1,4 +1,4 @@
-<div class="h-full w-full overflow-hidden flex flex-col" style="background-color: var(--mat-sys-surface);">
+<div class="h-full w-full overflow-hidden flex flex-col" style="background-color: var(--mat-sys-primary);">
   <nav class="p-2 flex flex-col gap-1" role="navigation" aria-label="Main navigation">
     <ng-container *ngFor="let item of menuItems()">
       <!-- Main menu item -->
@@ -10,8 +10,8 @@
           'justify-center py-3 px-0': sideNavCollapsed() && !responsiveService.isMobile()
         }"
         style="color: var(--mat-sys-on-surface);"
-        [style.background-color]="rla.isActive ? 'color-mix(in srgb, var(--mat-sys-primary), transparent 88%)' : 'transparent'"
-        [style.--hover-bg]="rla.isActive ? 'color-mix(in srgb, var(--mat-sys-primary), transparent 80%)' : 'color-mix(in srgb, var(--mat-sys-primary), transparent 92%)'"
+        [style.background-color]="rla.isActive ? 'color-mix(in srgb, var(--mat-sys-on-primary), transparent 80%)' : 'transparent'"
+        [style.--hover-bg]="rla.isActive ? 'color-mix(in srgb, var(--mat-sys-on-primary), transparent 80%)' : 'color-mix(in srgb, var(--mat-sys-primary), transparent 92%)'"
         [attr.aria-current]="rla.isActive ? 'page' : null"
         [attr.aria-label]="item.label | translate"
         [attr.aria-expanded]="item.subItems ? item.isExpanded : null"
@@ -23,7 +23,7 @@
             'mr-0': sideNavCollapsed() && !responsiveService.isMobile(),
             'mr-2': !sideNavCollapsed() || responsiveService.isMobile()
           }"
-          [style.color]="rla.isActive ? 'var(--mat-sys-primary)' : 'var(--mat-sys-on-surface)'"
+          [style.color]="rla.isActive ? 'var(--mat-sys-on-primary)' : 'var(--mat-sys-surface)'"
           aria-hidden="true"
         >
           {{ item.icon }}
@@ -31,7 +31,7 @@
         <span
   *ngIf="!sideNavCollapsed() || responsiveService.isMobile()"
   style="font-family: Roboto, 'Helvetica Neue', sans-serif !important; font-size: 14px"
-  [style.color]="rla.isActive ? 'var(--mat-sys-primary)' : 'var(--mat-sys-on-surface)'"
+  [style.color]="rla.isActive ? 'var(--mat-sys-on-primary)' : 'var(--mat-sys-surface)'"
   [style.font-weight]="rla.isActive ? '600' : '500'"
 >
   {{ item.label | translate }}
@@ -39,7 +39,7 @@
         <span
           *ngIf="item.subItems && (!sideNavCollapsed() || responsiveService.isMobile())"
           class="ml-auto material-icons-outlined"
-          [style.color]="rla.isActive ? 'var(--mat-sys-primary)' : 'var(--mat-sys-on-surface)'"
+  [style.color]="rla.isActive ? 'var(--mat-sys-on-primary)' : 'var(--mat-sys-surface)'"
           aria-hidden="true"
         >
           {{ item.isExpanded ? 'expand_less' : 'expand_more' }}
@@ -57,23 +57,23 @@
           routerLinkActive #subRla="routerLinkActive"
           class="rounded-lg p-3 flex items-center"
           style="color: var(--mat-sys-on-surface);"
-          [style.background-color]="subRla.isActive ? 'color-mix(in srgb, var(--mat-sys-primary), transparent 88%)' : 'transparent'"
-          [style.--hover-bg]="subRla.isActive ? 'color-mix(in srgb, var(--mat-sys-primary), transparent 80%)' : 'color-mix(in srgb, var(--mat-sys-primary), transparent 92%)'"
+          [style.background-color]="subRla.isActive ? 'color-mix(in srgb, var(--mat-sys-on-primary), transparent 80%)' : 'transparent'"
+          [style.--hover-bg]="subRla.isActive ? 'color-mix(in srgb, var(--mat-sys-on-primary), transparent 80%)' : 'color-mix(in srgb, var(--mat-sys-primary), transparent 92%)'"
           [attr.aria-current]="subRla.isActive ? 'page' : null"
           [attr.aria-label]="subItem.label | translate"
         >
           <span
             [class]="subRla.isActive ? 'material-icons' : 'material-icons-outlined'"
             class="mr-2"
-            [style.color]="subRla.isActive ? 'var(--mat-sys-primary)' : 'var(--mat-sys-on-surface)'"
+            [style.color]="subRla.isActive ? 'var(--mat-sys-on-primary)' : 'var(--mat-sys-surface)'"
             aria-hidden="true"
           >
             {{ subItem.icon }}
           </span>
           <span
             style="font-family: Roboto, 'Helvetica Neue', sans-serif !important; font-size: 14px"
-            [style.color]="subRla.isActive ? 'var(--mat-sys-primary)' : 'var(--mat-sys-on-surface)'"
-            [style.font-weight]="subRla.isActive ? '500' : '500'"
+            [style.color]="subRla.isActive ? 'var(--mat-sys-on-primary)' : 'var(--mat-sys-surface)'"
+            [style.font-weight]="subRla.isActive ? '600' : '500'"
           >
             {{ subItem.label | translate }}
           </span>

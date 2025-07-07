@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonToggleModule } from '@angular/material/button-toggle'; // Added for mat-button-toggle
 import { MatSidenav } from '@angular/material/sidenav';
 import { TranslocoRootModule } from '../transloco-root.module';
 import { CustomSidenav2Component } from '../custom-sidenav-2/custom-sidenav-2.component';
@@ -31,6 +32,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatMenuModule,
     MatBadgeModule,
     MatTooltipModule,
+    MatButtonToggleModule, // Added for mat-button-toggle
     TranslocoRootModule,
     CustomSidenav2Component,
     UserComponent,
@@ -43,6 +45,7 @@ export class MainDashboard2Component implements OnInit {
   title = 'Code Book';
   collapsed = signal(false);
   currentLanguage = signal('English');
+  darkModeValue = signal<'light' | 'dark'>('light'); // Signal to track dark/light mode
 
   constructor(private translateService: TranslateService) {
     this.translateService.addLangs(['en', 'fr']);
@@ -53,6 +56,10 @@ export class MainDashboard2Component implements OnInit {
     this.translateService.setDefaultLang('en');
     this.translateService.use(storedLang);
     this.currentLanguage.set(storedLang === 'en' ? 'English' : 'French');
+
+    // Initialize dark mode from DarkModeService
+    const initialTheme = this.darkModeService.selectedTheme()?.name || 'light';
+    this.darkModeValue.set(initialTheme as 'light' | 'dark');
   }
 
   ChangeLang(langCode: string) {
@@ -85,6 +92,11 @@ export class MainDashboard2Component implements OnInit {
         document.exitFullscreen();
       }
     }
+  }
+
+  toggleDarkMode(value: 'light' | 'dark') {
+    this.darkModeValue.set(value);
+    this.darkModeService.setTheme(value); // Update DarkModeService with the new theme
   }
 
   sidenavWidth = computed(() => {

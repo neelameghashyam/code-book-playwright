@@ -3,13 +3,13 @@
   <div class="flex items-center justify-between w-full">
     <!-- Left section -->
     <div class="flex items-center space-x-2 sm:space-x-4" style="margin-left: -8px !important;">
-     <button mat-icon-button class="text-white hover:bg-white/10 rounded-full" (click)="toggleSidenav()" aria-label="Toggle side navigation">
-  <mat-icon class="text-lg sm:text-xl">{{ collapsed() ? 'menu' : 'menu_open' }}</mat-icon>
-</button>
+      <button mat-icon-button class="text-white hover:bg-white/10 rounded-full" (click)="toggleSidenav()" aria-label="Toggle side navigation">
+        <mat-icon class="text-lg sm:text-xl">{{ collapsed() ? 'menu' : 'menu_open' }}</mat-icon>
+      </button>
       <span class="text-lg sm:text-xl font-semibold truncate">{{ title }}</span>
     </div>
 
-    <!-- Right section remains unchanged -->
+    <!-- Right section -->
     <div class="flex items-center space-x-1 sm:space-x-2 pr-2 sm:pr-4">
       <!-- Mobile menu button -->
       <button *ngIf="responsiveService.isMobile()" mat-icon-button class="text-white hover:bg-white/10 rounded-full sm:hidden" 
@@ -20,6 +20,12 @@
         <button mat-menu-item (click)="toggleFullScreen()" aria-label="Toggle full screen">
           <mat-icon>fullscreen</mat-icon>
           <span>Full Screen</span>
+        </button>
+        <button mat-menu-item (click)="toggleDarkMode('light')" [disabled]="darkModeValue() === 'light'" aria-label="Switch to Light Mode">
+          <mat-icon>light_mode</mat-icon>
+        </button>
+        <button mat-menu-item (click)="toggleDarkMode('dark')" [disabled]="darkModeValue() === 'dark'" aria-label="Switch to Dark Mode">
+          <mat-icon>dark_mode</mat-icon>
         </button>
         <button mat-menu-item [matMenuTriggerFor]="darkModeMenu" aria-label="Select theme">
           <mat-icon>{{ darkModeService.selectedTheme()?.icon }}</mat-icon>
@@ -41,6 +47,15 @@
                 (click)="toggleFullScreen()" aria-label="Toggle full screen">
           <mat-icon class="text-lg sm:text-xl">fullscreen</mat-icon>
         </button>
+
+        <mat-button-toggle-group #darkModeToggle="matButtonToggleGroup" (change)="toggleDarkMode(darkModeToggle.value)" aria-label="Toggle dark or light mode">
+          <mat-button-toggle value="light" [checked]="darkModeValue() === 'light'" class="text-white hover:bg-white/10">
+            <mat-icon>light_mode</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="dark" [checked]="darkModeValue() === 'dark'" class="text-white hover:bg-white/10">
+            <mat-icon>dark_mode</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
 
         <button mat-icon-button class="text-white hover:bg-white/10 rounded-full" 
                 [matMenuTriggerFor]="darkModeMenu" aria-label="Select light or dark theme">

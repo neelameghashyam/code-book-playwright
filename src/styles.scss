@@ -11,16 +11,46 @@ body {
   background-color: var(--mat-sys-background);
   color: var(--mat-sys-on-background);
 
-  
-
   .mat-toolbar {
-  background-color: var(--mat-sys-primary);
-  color: var(--mat-sys-on-primary);
-  box-shadow: var(--mat-sys-level2);
- 
-  
-}
- 
+    background-color: var(--mat-sys-primary);
+    color: var(--mat-sys-on-primary);
+    box-shadow: var(--mat-sys-level2);
+
+    mat-icon {
+      color: var(--mat-sys-on-primary); // Ensure icons in toolbar remain white for contrast
+    }
+
+    mat-button-toggle-group {
+      height: 100%;
+      .mat-button-toggle {
+        color: var(--mat-sys-on-primary); // Text color for toggle options
+        background-color: transparent;
+        border: 1px solid color-mix(in srgb, var(--mat-sys-on-primary), transparent 60%);
+        border-radius: 4px;
+        padding: 2px 8px;
+        margin: 0 2px;
+
+        mat-icon {
+          color: var(--mat-sys-on-primary); // Icon color in toggle
+        }
+
+        &:hover {
+          background-color: color-mix(in srgb, var(--mat-sys-on-primary), transparent 90%);
+        }
+
+        &.mat-button-toggle-checked {
+          background-color: var(--mat-sys-primary);
+          color: var(--mat-sys-on-primary);
+          border-color: var(--mat-sys-on-primary);
+
+          mat-icon {
+            color: var(--mat-sys-on-primary);
+          }
+        }
+      }
+    }
+  }
+
   .mat-step-header {
     .mat-step-icon,
     .mat-step-icon-selected,
@@ -29,25 +59,23 @@ body {
       background: none !important;
     }
     .mat-step-label {
-      color: #000000;
+      color: #ffffff;
     }
   }
   .dark-theme .mat-step-header .mat-step-label {
     color: #ffffff;
   }
 
-  .dark-theme{
-    a{
-    letter-spacing: var(--mat-sys-headline-small-tracking);
-    color: white;
-    
+  .dark-theme {
+    a {
+      letter-spacing: var(--mat-sys-headline-small-tracking);
+      color: white;
+    }
   }
 
-  }
-   a{
+  a {
     letter-spacing: var(--mat-sys-headline-small-tracking);
-    color:rgb(0, 0, 0);
-    
+    color: rgb(0, 0, 0);
   }
 
   h1 {
@@ -56,7 +84,7 @@ body {
     color: var(--mat-sys-on-background);
   }
 
-  a{
+  a {
     letter-spacing: var(--mat-sys-headline-small-tracking);
     color: white;
   }
@@ -105,7 +133,6 @@ body {
     }
   }
 
-
   .mat-menu-panel {
     background-color: var(--mat-sys-surface-container-high);
     color: var(--mat-sys-on-surface);
@@ -126,6 +153,7 @@ body {
 
         mat-icon {
           margin-right: 8px;
+          color: var(--mat-sys-on-surface);
         }
 
         span {
@@ -165,10 +193,8 @@ body {
     color: var(--mat-sys-on-background);
   }
 
-  .mat-toolbar {
-    background-color: var(--mat-sys-primary);
-    color: var(--mat-sys-on-primary);
-    box-shadow: var(--mat-sys-level2);
+  mat-icon {
+    color: var(--mat-sys-on-surface);
   }
 
   footer {
