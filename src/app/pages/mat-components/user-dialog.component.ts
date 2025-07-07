@@ -24,12 +24,16 @@ import { User } from './user.model';
       <mat-form-field appearance="fill" class="w-full">
         <mat-label>First Name</mat-label>
         <input matInput [(ngModel)]="user.firstName" required>
-        <mat-error *ngIf="!user.firstName">First Name is required</mat-error>
+        @if (!user.firstName) {
+          <mat-error>First Name is required</mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="fill" class="w-full">
         <mat-label>Email</mat-label>
         <input matInput [(ngModel)]="user.email" type="email" required>
-        <mat-error *ngIf="!user.email">Email is required</mat-error>
+        @if (!user.email) {
+          <mat-error>Email is required</mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="fill" class="w-full">
         <mat-label>Role</mat-label>
@@ -38,7 +42,9 @@ import { User } from './user.model';
           <mat-option value="User">User</mat-option>
           <mat-option value="Guest">Guest</mat-option>
         </mat-select>
-        <mat-error *ngIf="!user.role">Role is required</mat-error>
+        @if (!user.role) {
+          <mat-error>Role is required</mat-error>
+        }
       </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions align="end">

@@ -39,7 +39,7 @@ const apiUrl = 'https://jsonplaceholder.typicode.com/users';
 export const UserStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
-  withComputed(({ users, searchQuery, currentPage, pageSize, sortField, sortDirection }) => {
+  withComputed(({ users, searchQuery, pageSize, sortField, sortDirection }) => {
     const filteredUsers = computed(() => {
       let filtered = users().filter(u => {
         const firstName = u.firstName ?? '';
@@ -74,8 +74,7 @@ export const UserStore = signalStore(
     return {
       filteredUsers,
       paginatedUsers: computed(() => {
-        const start = (currentPage() - 1) ;
-        const paginated = filteredUsers()
+        const paginated = filteredUsers();
         return paginated;
       }),
       totalPages: computed(() => {
@@ -84,6 +83,14 @@ export const UserStore = signalStore(
       }),
       totalRecords: computed(() => filteredUsers().length),
       isLoading: computed(() => !users().length && !initialState.initialized),
+      uniqueEmails: computed(() => {
+        const emails = users().map(u => u.email ?? '').filter(email => email !== '');
+        return [...new Set(emails)].sort();
+      }),
+      uniqueFirstNames: computed(() => {
+        const names = users().map(u => u.firstName ?? '').filter(name => name !== '');
+        return [...new Set(names)].sort();
+      }),
     };
   }),
   withMethods((store, http = inject(HttpClient)) => ({

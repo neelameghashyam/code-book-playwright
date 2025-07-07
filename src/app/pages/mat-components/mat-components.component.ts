@@ -15,6 +15,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ToastrService } from 'ngx-toastr';
 import { UserStore } from './mat-components.store';
 import { User } from './user.model';
 import { UserDialogComponent } from './user-dialog.component';
@@ -40,6 +42,7 @@ import { untracked } from '@angular/core';
     MatNativeDateModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
+    MatAutocompleteModule,
   ],
   templateUrl: './mat-components.component.html',
   styleUrls: ['./mat-components.component.scss'],
@@ -48,6 +51,7 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
   private userStore = inject(UserStore);
   private dialog = inject(MatDialog);
   private cdr = inject(ChangeDetectorRef);
+  private toastr = inject(ToastrService);
 
   public isLoading = this.userStore.isLoading;
   public error = this.userStore.error;
@@ -55,6 +59,7 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
   public currentPage = this.userStore.currentPage;
   public filteredUsers = this.userStore.filteredUsers;
   public totalRecords = this.userStore.totalRecords;
+  public uniqueFirstNames = this.userStore.uniqueFirstNames;
 
   private destroyEffect: EffectRef | null = null;
 
@@ -69,6 +74,8 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
     endDate: null as Date | null,
   };
   roles = ['Admin', 'User', 'Guest'];
+  allEmails: string[] = [];
+  filteredEmails: string[] = [];
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -79,6 +86,8 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
       const filteredUsersLength = this.userStore.totalRecords();
       untracked(() => {
         this.dataSource.data = paginatedUsers;
+        this.allEmails = [...new Set(this.userStore.users().map(user => user.email).filter(email => !!email))];
+        this.filteredEmails = this.allEmails;
         if (this.paginator) {
           this.paginator.length = filteredUsersLength;
           this.paginator.pageIndex = this.userStore.currentPage() - 1;
@@ -120,7 +129,7 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
 
       const firstNameSearch =
         !filterValues.firstName ||
-        (data.firstName ?? '').toLowerCase().includes(filterValues.firstName.toLowerCase());
+        (data.firstName ?? '') === filterValues.firstName;
 
       const emailSearch =
         !filterValues.email ||
@@ -132,13 +141,15 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
         (!filterValues.startDate || new Date(data.createdDate) >= new Date(filterValues.startDate)) &&
         (!filterValues.endDate || new Date(data.createdDate) <= new Date(filterValues.endDate));
 
-      const result = globalSearch && firstNameSearch && emailSearch && roleSearch && dateSearch;
-      return result;
+      return globalSearch && firstNameSearch && emailSearch && roleSearch && dateSearch;
     };
   }
 
   applyFilter() {
     this.dataSource.filter = JSON.stringify(this.filterValues);
+    this.filteredEmails = this.allEmails.filter(email =>
+      email.toLowerCase().includes(this.filterValues.email.toLowerCase())
+    );
     this.userStore.setPage(1);
     if (this.paginator) {
       const filteredLength = this.userStore.totalRecords();
@@ -161,12 +172,14 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
       if (result && result.firstName && result.email && result.role) {
         try {
           this.userStore.addUser(result);
+          this.toastr.success('User added successfully', 'Success');
           this.userStore.sortUsers('createdDate', 'desc');
           this.syncPaginator();
           this.applyFilter();
           this.dataSource._updateChangeSubscription();
           this.cdr.markForCheck();
         } catch (error) {
+          this.toastr.error('Failed to add user', 'Error');
           console.error('openAddDialog: addUser failed', error);
         }
       } else {
@@ -185,11 +198,13 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
       if (result) {
         try {
           this.userStore.updateUser(result);
+          this.toastr.success('User updated successfully', 'Success');
           this.syncPaginator();
           this.applyFilter();
           this.dataSource._updateChangeSubscription();
           this.cdr.markForCheck();
         } catch (error) {
+          this.toastr.error('Failed to update user', 'Error');
           console.error('openEditDialog: updateUser failed', error);
         }
       }
@@ -199,11 +214,13 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
   deleteUser(id: number) {
     try {
       this.userStore.deleteUser(id);
+      this.toastr.success('User deleted successfully', 'Success');
       this.syncPaginator();
       this.applyFilter();
       this.dataSource._updateChangeSubscription();
       this.cdr.markForCheck();
     } catch (error) {
+      this.toastr.error('Failed to delete user', 'Error');
       console.error('deleteUser: delete failed', error);
     }
   }
@@ -214,7 +231,6 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
       const currentPage = this.userStore.currentPage();
       const pageSize = this.userStore.pageSize();
       const totalPages = this.userStore.totalPages();
-      // Ensure current page is valid
       const validPage = Math.min(Math.max(1, currentPage), totalPages);
       this.paginator.length = totalRecords;
       this.paginator.pageIndex = validPage - 1;
@@ -239,11 +255,13 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
     this.userStore.sortUsers(null, 'asc');
     try {
       this.userStore.loadUsers();
+      this.toastr.success('Table refreshed successfully', 'Success');
       this.syncPaginator();
       this.applyFilter();
       this.dataSource._updateChangeSubscription();
       this.cdr.markForCheck();
     } catch (error) {
+      this.toastr.error('Failed to refresh table', 'Error');
       console.error('refreshTable: loadUsers failed', error);
     }
   }

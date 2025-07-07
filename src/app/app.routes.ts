@@ -4,7 +4,6 @@ import { MainDashboardComponent } from './main-dashboard/main-dashboard.componen
 import { LoginComponent } from './login/login/login.component';
 import { AuthGuard } from './auth.guard';
 import { MainDashboard2Component } from './main-dashboard-2/main-dashboard-2.component';
-import { DemoComponent } from './demo/demo.component';
 
 export const routes: Routes = [
  
@@ -88,9 +87,5 @@ export const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'dashboard-selector', pathMatch: 'full' },
-   {
-    path: 'app-demo',
-    component: DemoComponent
-  },
   { path: '**', redirectTo: 'dashboard-selector' },
 ];
