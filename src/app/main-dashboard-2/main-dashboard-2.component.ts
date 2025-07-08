@@ -101,7 +101,7 @@ export class MainDashboard2Component implements OnInit {
 
   sidenavWidth = computed(() => {
     if (this.responsiveService.isMobile()) return '200px';
-    return this.collapsed() ? '60px' : '200px';
+    return this.collapsed() ? '64px' : '200px';
   });
 
   sidenavMode = computed(() => {

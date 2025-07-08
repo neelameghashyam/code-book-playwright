@@ -4,6 +4,7 @@ import { MainDashboardComponent } from './main-dashboard/main-dashboard.componen
 import { LoginComponent } from './login/login/login.component';
 import { AuthGuard } from './auth.guard';
 import { MainDashboard2Component } from './main-dashboard-2/main-dashboard-2.component';
+import { MatComponentsComponent } from './pages/mat-components/mat-components.component';
 
 export const routes: Routes = [
  
@@ -85,6 +86,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
   },
+   { path: 'mat-components', component: MatComponentsComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'dashboard-selector', pathMatch: 'full' },
   { path: '**', redirectTo: 'dashboard-selector' },

@@ -11,7 +11,7 @@
         }"
         style="color: var(--mat-sys-on-surface);"
         [style.background-color]="rla.isActive ? 'color-mix(in srgb, var(--mat-sys-on-primary), transparent 80%)' : 'transparent'"
-        [style.--hover-bg]="rla.isActive ? 'color-mix(in srgb, var(--mat-sys-on-primary), transparent 80%)' : 'color-mix(in srgb, var(--mat-sys-primary), transparent 92%)'"
+        [style.--hover-bg]="rla.isActive ? 'color-mix(in srgb, var(--mat-sys-on-primary), transparent 72%)' : 'color-mix(in srgb, var(--mat-sys-primary), transparent 92%)'"
         [attr.aria-current]="rla.isActive ? 'page' : null"
         [attr.aria-label]="item.label | translate"
         [attr.aria-expanded]="item.subItems ? item.isExpanded : null"
@@ -58,7 +58,7 @@
           class="rounded-lg p-3 flex items-center"
           style="color: var(--mat-sys-on-surface);"
           [style.background-color]="subRla.isActive ? 'color-mix(in srgb, var(--mat-sys-on-primary), transparent 80%)' : 'transparent'"
-          [style.--hover-bg]="subRla.isActive ? 'color-mix(in srgb, var(--mat-sys-on-primary), transparent 80%)' : 'color-mix(in srgb, var(--mat-sys-primary), transparent 92%)'"
+          [style.--hover-bg]="subRla.isActive ? 'color-mix(in srgb, var(--mat-sys-on-primary), transparent 72%)' : 'color-mix(in srgb, var(--mat-sys-primary), transparent 92%)'"
           [attr.aria-current]="subRla.isActive ? 'page' : null"
           [attr.aria-label]="subItem.label | translate"
         >

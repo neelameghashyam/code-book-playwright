@@ -19,38 +19,38 @@ import { User } from './user.model';
     FormsModule,
   ],
   template: `
-    <h2 mat-dialog-title>{{ data.user ? 'Edit User' : 'Add User' }}</h2>
-    <mat-dialog-content>
-      <mat-form-field appearance="fill" class="w-full">
-        <mat-label>First Name</mat-label>
-        <input matInput [(ngModel)]="user.firstName" required>
-        @if (!user.firstName) {
-          <mat-error>First Name is required</mat-error>
-        }
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="w-full">
-        <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="user.email" type="email" required>
-        @if (!user.email) {
-          <mat-error>Email is required</mat-error>
-        }
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="w-full">
-        <mat-label>Role</mat-label>
-        <mat-select [(ngModel)]="user.role" required>
-          <mat-option value="Admin">Admin</mat-option>
-          <mat-option value="User">User</mat-option>
-          <mat-option value="Guest">Guest</mat-option>
-        </mat-select>
-        @if (!user.role) {
-          <mat-error>Role is required</mat-error>
-        }
-      </mat-form-field>
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-button (click)="cancel()">Cancel</button>
-      <button mat-raised-button color="primary" (click)="save()" [disabled]="!isValid()">Save</button>
-    </mat-dialog-actions>
+   <h2 mat-dialog-title>{{ data.user ? 'Edit User' : 'Add User' }}</h2>
+<mat-dialog-content>
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>First Name</mat-label>
+    <input matInput [(ngModel)]="user.firstName" required aria-label="First Name" data-testid="first-name-input">
+    @if (!user.firstName) {
+      <mat-error data-testid="first-name-error">First Name is required</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="user.email" type="email" required aria-label="Email" data-testid="email-input">
+    @if (!user.email) {
+      <mat-error data-testid="email-error">Email is required</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Role</mat-label>
+    <mat-select [(ngModel)]="user.role" required aria-label="Role" data-testid="role-select">
+      <mat-option value="Admin" data-testid="role-admin">Admin</mat-option>
+      <mat-option value="User" data-testid="role-user">User</mat-option>
+      <mat-option value="Guest" data-testid="role-guest">Guest</mat-option>
+    </mat-select>
+    @if (!user.role) {
+      <mat-error data-testid="role-error">Role is required</mat-error>
+    }
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()" aria-label="Cancel" data-testid="cancel-button">Cancel</button>
+  <button mat-raised-button color="primary" (click)="save()" [disabled]="!isValid()" aria-label="Save" data-testid="save-button">Save</button>
+</mat-dialog-actions>
   `,
 })
 export class UserDialogComponent {
