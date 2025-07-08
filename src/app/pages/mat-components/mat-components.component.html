@@ -65,20 +65,15 @@
       </mat-select>
     </mat-form-field>
 
-    <!-- Start Date Filter -->
-    <mat-form-field appearance="fill" class="w-44 sm:max-w-80" data-testid="start-date-filter">
-      <mat-label class="text-xs">Start Date</mat-label>
-      <input matInput [matDatepicker]="startPicker" [(ngModel)]="filterValues.startDate" (ngModelChange)="applyFilter()" class="text-sm text-gray-900 dark:text-gray-100" aria-label="Filter by Start Date" data-testid="start-date-input">
-      <mat-datepicker-toggle matSuffix [for]="startPicker" class="text-sm" aria-label="Open Start Date Picker" data-testid="start-date-picker-toggle"></mat-datepicker-toggle>
-      <mat-datepicker #startPicker aria-label="Start Date Picker"></mat-datepicker>
-    </mat-form-field>
-
-    <!-- End Date Filter -->
-    <mat-form-field appearance="fill" class="w-44 sm:max-w-80" data-testid="end-date-filter">
-      <mat-label class="text-xs">End Date</mat-label>
-      <input matInput [matDatepicker]="endPicker" [(ngModel)]="filterValues.endDate" (ngModelChange)="applyFilter()" class="text-sm text-gray-900 dark:text-gray-100" aria-label="Filter by End Date" data-testid="end-date-input">
-      <mat-datepicker-toggle matSuffix [for]="endPicker" class="text-sm" aria-label="Open End Date Picker" data-testid="end-date-picker-toggle"></mat-datepicker-toggle>
-      <mat-datepicker #endPicker aria-label="End Date Picker"></mat-datepicker>
+    <!-- Date Range Filter -->
+    <mat-form-field appearance="fill" class="w-44 sm:max-w-80" data-testid="date-range-filter">
+      <mat-label class="text-xs">Date Range</mat-label>
+      <mat-date-range-input [rangePicker]="dateRangePicker" class="text-sm text-gray-900 dark:text-gray-100" aria-label="Filter by Date Range" data-testid="date-range-input">
+        <input matStartDate [(ngModel)]="filterValues.startDate" (ngModelChange)="applyFilter()" placeholder="Start date" aria-label="Start Date" data-testid="start-date-input">
+        <input matEndDate [(ngModel)]="filterValues.endDate" (ngModelChange)="applyFilter()" placeholder="End date" aria-label="End Date" data-testid="end-date-input">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="dateRangePicker" class="text-sm" aria-label="Open Date Range Picker" data-testid="date-range-picker-toggle"></mat-datepicker-toggle>
+      <mat-date-range-picker #dateRangePicker aria-label="Date Range Picker"></mat-date-range-picker>
     </mat-form-field>
   </div>
 
