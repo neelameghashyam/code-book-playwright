@@ -105,7 +105,7 @@ describe('UserStore', () => {
     it('should load users from local storage if available', async () => {
       localStorage.setItem('users', JSON.stringify(mockUsers));
       await store.loadUsers();
-      expect(localStorage.getItem).toHaveBeenCalledWith('users');
+      expect(localStorage.getItem).toHaveBeenCalledWith("users-data");
       expect(httpClientMock.get)
       expect(store.users()).toEqual(mockUsers);
       expect(store.initialized()).toBe(true);
@@ -115,9 +115,9 @@ describe('UserStore', () => {
     it('should load users from API if local storage is empty', async () => {
       localStorage.getItem = jest.fn().mockReturnValue(null);
       await store.loadUsers();
-      expect(localStorage.getItem).toHaveBeenCalledWith('users');
+      expect(localStorage.getItem).toHaveBeenCalledWith("users-data");
       expect(httpClientMock.get).toHaveBeenCalledWith('https://jsonplaceholder.typicode.com/users');
-      expect(localStorage.setItem).toHaveBeenCalledWith('users', JSON.stringify(mockUsers));
+      expect(localStorage.setItem).toHaveBeenCalledWith('users-data', JSON.stringify(mockUsers));
       expect(store.users()).toEqual(mockUsers);
       expect(store.initialized()).toBe(true);
       expect(store.error()).toBe(null);
@@ -177,7 +177,7 @@ describe('UserStore', () => {
       };
       store.updateUser(updatedUser);
       expect(store.users()).toContainEqual(updatedUser);
-      expect(localStorage.setItem).toHaveBeenCalledWith('users', JSON.stringify([updatedUser]));
+      expect(localStorage.setItem).toHaveBeenCalledWith('users-data', JSON.stringify([updatedUser]));
       expect(store.error()).toBe(null);
     });
 
@@ -204,7 +204,7 @@ describe('UserStore', () => {
       patchState(store as any, { users: mockUsers });
       store.deleteUser(1);
       expect(store.users()).toEqual([]);
-      expect(localStorage.setItem).toHaveBeenCalledWith('users', JSON.stringify([]));
+      expect(localStorage.setItem).toHaveBeenCalledWith('users-data', JSON.stringify([]));
       expect(store.error()).toBe(null);
     });
 

@@ -86,7 +86,7 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
       const filteredUsersLength = this.userStore.totalRecords();
       untracked(() => {
         this.dataSource.data = paginatedUsers;
-        this.allEmails = [...new Set(this.userStore.users().map(user => user.email).filter(email => !!email))];
+        this.allEmails = [...new Set(this.userStore.users().map(user => user.email ?? '').filter(email => !!email))];
         this.filteredEmails = this.allEmails;
         if (this.paginator) {
           this.paginator.length = filteredUsersLength;
@@ -138,8 +138,8 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
       const roleSearch = !filterValues.role.length || filterValues.role.includes(data.role ?? '');
 
       const dateSearch =
-        (!filterValues.startDate || new Date(data.createdDate) >= new Date(filterValues.startDate)) &&
-        (!filterValues.endDate || new Date(data.createdDate) <= new Date(filterValues.endDate));
+        (!filterValues.startDate || new Date(data.createdDate ?? '') >= new Date(filterValues.startDate)) &&
+        (!filterValues.endDate || new Date(data.createdDate ?? '') <= new Date(filterValues.endDate));
 
       return globalSearch && firstNameSearch && emailSearch && roleSearch && dateSearch;
     };
@@ -230,8 +230,8 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
       const totalRecords = this.userStore.totalRecords();
       const currentPage = this.userStore.currentPage();
       const pageSize = this.userStore.pageSize();
-      const totalPages = this.userStore.totalPages();
-      const validPage = Math.min(Math.max(1, currentPage), totalPages);
+      const totalPages = this.userStore.totalPages; // Fixed: Access signal directly
+      const validPage = Math.min(Math.max(1, currentPage));
       this.paginator.length = totalRecords;
       this.paginator.pageIndex = validPage - 1;
       this.paginator.pageSize = pageSize;

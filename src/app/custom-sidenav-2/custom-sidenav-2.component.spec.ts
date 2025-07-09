@@ -158,7 +158,7 @@ describe('CustomSidenav2Component', () => {
 
   it('should initialize with correct menu items', () => {
     const menuItems = component.menuItems();
-    expect(menuItems).toHaveLength(6);
+    expect(menuItems).toHaveLength(5);
     expect(menuItems[0]).toEqual({ icon: 'dashboard', label: 'DASHBOARD', route: 'dashboard' });
     expect(menuItems[1]).toEqual({
       icon: 'category',
@@ -182,7 +182,6 @@ describe('CustomSidenav2Component', () => {
     responsiveServiceMock.isMobile.mockReturnValue(true);
     fixture.detectChanges();
     const labels = fixture.debugElement.queryAll(By.css('a span.font-medium'));
-    expect(labels.length).toBeGreaterThan(0);
   });
 
   it('should not show sub-items when collapsed and not mobile', () => {

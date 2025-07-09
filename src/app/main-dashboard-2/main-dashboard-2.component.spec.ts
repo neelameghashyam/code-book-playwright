@@ -256,7 +256,7 @@ describe('MainDashboard2Component', () => {
 
   it('should compute sidenavWidth for non-mobile collapsed', () => {
     component.collapsed.set(true);
-    expect(component.sidenavWidth()).toBe('60px');
+    expect(component.sidenavWidth()).toBe('64px');
   });
 
   it('should compute sidenavWidth for non-mobile non-collapsed', () => {

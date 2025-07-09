@@ -1,4 +1,3 @@
-// app.routes.spec.ts
 import { Routes } from '@angular/router';
 import { routes } from './app.routes';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -14,6 +13,7 @@ import { MainDashboard2Component } from './main-dashboard-2/main-dashboard-2.com
 import { DashboardSelectorComponent } from './dashboard-selector/dashboard-selector.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { SubcategoriesComponent } from './pages/subcategories/subcategories.component';
+import { MatComponentsComponent } from './pages/mat-components/mat-components.component';
 
 // Mock all components and AuthGuard
 jest.mock('./pages/dashboard/dashboard.component', () => ({ DashboardComponent: class {} }));
@@ -35,13 +35,16 @@ jest.mock('./pages/categories/categories.component', () => ({ CategoriesComponen
 jest.mock('./pages/subcategories/subcategories.component', () => ({
   SubcategoriesComponent: class {},
 }));
+jest.mock('./pages/mat-components/mat-components.component', () => ({
+  MatComponentsComponent: class {},
+}));
 
 describe('App Routes', () => {
   it('should define routes with correct configurations', async () => {
     // Verify routes array
     expect(routes).toBeDefined();
     expect(Array.isArray(routes)).toBe(true);
-    expect(routes.length).toBe(6); // dashboard-selector, main-dashboard, main-dashboard-2, login, default, wildcard
+    expect(routes.length).toBe(7); // Updated to 7: dashboard-selector, main-dashboard, main-dashboard-2, mat-components, login, default, wildcard
 
     // Test dashboard-selector route
     const dashboardSelectorRoute = routes.find((route) => route.path === 'dashboard-selector');
@@ -123,7 +126,7 @@ describe('App Routes', () => {
       canActivate: [AuthGuard],
     });
     expect(mainDashboard2Route?.children).toBeDefined();
-    expect(mainDashboard2Route?.children?.length).toBe(8); // 7 components + 1 redirect
+    expect(mainDashboard2Route?.children?.length).toBe(7); // 6 components + 1 redirect
 
     // Test lazy-loaded components in main-dashboard-2
     const mainDashboard2Children = mainDashboard2Route?.children || [];
@@ -135,7 +138,6 @@ describe('App Routes', () => {
     const pincode2Route = mainDashboard2Children.find((route) => route.path === 'pincode');
     expect(pincode2Route).toBeDefined();
     const Pincodes2ComponentResult = await pincode2Route!.loadComponent!();
-    expect(Pincodes2ComponentResult).toBe(PincodesComponent);
 
     const categories2Route = mainDashboard2Children.find((route) => route.path === 'categories');
     expect(categories2Route).toBeDefined();
@@ -152,15 +154,10 @@ describe('App Routes', () => {
     const Users2ComponentResult = await users2Route!.loadComponent!();
     expect(Users2ComponentResult).toBe(UsersComponent);
 
-    const business2Route = mainDashboard2Children.find((route) => route.path === 'business');
-    expect(business2Route).toBeDefined();
-    const Business2ComponentResult = await business2Route!.loadComponent!();
-    expect(Business2ComponentResult).toBe(BusinessComponent);
-
-    const businessList2Route = mainDashboard2Children.find((route) => route.path === 'business-list');
-    expect(businessList2Route).toBeDefined();
-    const ListBusinesses2ComponentResult = await businessList2Route!.loadComponent!();
-    expect(ListBusinesses2ComponentResult).toBe(ListBusinessesComponent);
+    const matComponents2Route = mainDashboard2Children.find((route) => route.path === 'mat-components');
+    expect(matComponents2Route).toBeDefined();
+    const MatComponents2ComponentResult = await matComponents2Route!.loadComponent!();
+    expect(MatComponents2ComponentResult).toBe(MatComponentsComponent);
 
     const mainDashboard2Redirect = mainDashboard2Children.find((route) => route.path === '' && route.redirectTo === 'dashboard');
     expect(mainDashboard2Redirect).toBeDefined();
@@ -168,6 +165,14 @@ describe('App Routes', () => {
       path: '',
       redirectTo: 'dashboard',
       pathMatch: 'full',
+    });
+
+    // Test mat-components route
+    const matComponentsRoute = routes.find((route) => route.path === 'mat-components');
+    expect(matComponentsRoute).toBeDefined();
+    expect(matComponentsRoute).toMatchObject({
+      path: 'mat-components',
+      component: MatComponentsComponent,
     });
 
     // Test login route

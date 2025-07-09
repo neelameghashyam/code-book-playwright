@@ -42,10 +42,10 @@ export const UserStore = signalStore(
   withComputed(({ users, searchQuery, pageSize, sortField, sortDirection }) => {
     const filteredUsers = computed(() => {
       let filtered = users().filter(u => {
-        const firstName = u.firstName ?? '';
-        const email = u.email ?? '';
-        const role = u.role ?? '';
-        const query = searchQuery().toLowerCase() ?? '';
+        const firstName = u.firstName ;
+        const email = u.email ;
+        const role = u.role ;
+        const query = searchQuery().toLowerCase() ;
         return (
           firstName.toLowerCase().includes(query) ||
           email.toLowerCase().includes(query) ||
@@ -57,12 +57,12 @@ export const UserStore = signalStore(
         filtered = filtered.sort((a, b) => {
           const field = sortField() as keyof User;
           if (field === 'createdDate') {
-            const valueA = new Date(a[field] ?? '').getTime();
-            const valueB = new Date(b[field] ?? '').getTime();
+            const valueA = new Date(a[field] ).getTime();
+            const valueB = new Date(b[field] ).getTime();
             return sortDirection() === 'asc' ? valueA - valueB : valueB - valueA;
           } else {
-            const valueA = String(a[field] ?? '').toLowerCase();
-            const valueB = String(b[field] ?? '').toLowerCase();
+            const valueA = String(a[field] ).toLowerCase();
+            const valueB = String(b[field] ).toLowerCase();
             return sortDirection() === 'asc' ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
           }
         });
@@ -84,11 +84,11 @@ export const UserStore = signalStore(
       totalRecords: computed(() => filteredUsers().length),
       isLoading: computed(() => !users().length && !initialState.initialized),
       uniqueEmails: computed(() => {
-        const emails = users().map(u => u.email ?? '').filter(email => email !== '');
+        const emails = users().map(u => u.email ).filter(email => email !== '');
         return [...new Set(emails)].sort();
       }),
       uniqueFirstNames: computed(() => {
-        const names = users().map(u => u.firstName ?? '').filter(name => name !== '');
+        const names = users().map(u => u.firstName ).filter(name => name !== '');
         return [...new Set(names)].sort();
       }),
     };
@@ -170,7 +170,7 @@ export const UserStore = signalStore(
         localStorage.setItem('users', JSON.stringify(updatedUsers));
         patchState(store, { users: updatedUsers, error: null });
       } catch (error: any) {
-        patchState(store, { error: error.message || 'Failed to delete user' });
+        patchState(store, { error: error.message });
         throw error;
       }
     },
@@ -181,7 +181,7 @@ export const UserStore = signalStore(
       patchState(store, { pageSize, currentPage: 1 });
     },
     setSearchQuery(query: string) {
-      patchState(store, { searchQuery: query || '', currentPage: 1 });
+      patchState(store, { searchQuery: query, currentPage: 1 });
     },
     sortUsers(field: string | null, direction: 'asc' | 'desc') {
       patchState(store, { sortField: field, sortDirection: direction, currentPage: 1 });

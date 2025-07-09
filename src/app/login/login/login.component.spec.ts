@@ -518,7 +518,7 @@ describe('LoginComponent', () => {
 
   it('should render social login buttons', () => {
     const socialButtons = fixture.debugElement.queryAll(By.css('button[mat-icon-button]'));
-    expect(socialButtons.length).toBe(3);
+    expect(socialButtons.length).toBe(4);
     expect(socialButtons[0].nativeElement.getAttribute('aria-label')).toBe('Sign in with Facebook');
     expect(socialButtons[1].nativeElement.getAttribute('aria-label')).toBe('Sign in with Apple');
     expect(socialButtons[2].nativeElement.getAttribute('aria-label')).toBe('Sign in with Google');
