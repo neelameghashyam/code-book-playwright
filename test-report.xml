@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="C:\Angular project-2\code-book-playwright\src\app\pages\dashboard\dashboard.component.spec.ts">
-    <testCase name="DashboardComponent should create" duration="512"/>
-    <testCase name="DashboardComponent should initialize form and countries" duration="192"/>
-    <testCase name="DashboardComponent should set language from localStorage on init" duration="127"/>
-    <testCase name="DashboardComponent should set default language to en if no lang in localStorage" duration="146"/>
-    <testCase name="DashboardComponent should update responsiveClass based on breakpoint" duration="106"/>
-    <testCase name="DashboardComponent should load service providers from localStorage" duration="96"/>
-    <testCase name="DashboardComponent should handle null service providers in localStorage" duration="80"/>
-    <testCase name="DashboardComponent should create service provider form group" duration="80"/>
-    <testCase name="DashboardComponent should delete service provider" duration="69"/>
-    <testCase name="DashboardComponent should handle error in deleteServiceProvider" duration="78"/>
-    <testCase name="DashboardComponent should submit valid form" duration="104"/>
-    <testCase name="DashboardComponent should handle invalid form submission" duration="68"/>
-    <testCase name="DashboardComponent should handle specific form validation errors" duration="63"/>
-    <testCase name="DashboardComponent should handle localStorage error in onSubmit" duration="74"/>
-    <testCase name="DashboardComponent should enable edit mode" duration="68"/>
-    <testCase name="DashboardComponent should cancel form" duration="69"/>
-    <testCase name="DashboardComponent should save to localStorage" duration="55"/>
-    <testCase name="DashboardComponent should handle error in saveToLocalStorage" duration="60"/>
-    <testCase name="DashboardComponent should track by provider id" duration="47"/>
-    <testCase name="DashboardComponent should get serviceProvidersArray" duration="48"/>
-    <testCase name="DashboardComponent should handle empty service providers in loadFromLocalStorage" duration="50"/>
-    <testCase name="DashboardComponent should handle invalid JSON in loadFromLocalStorage" duration="44"/>
-    <testCase name="DashboardComponent should handle null provider in createServiceProviderFormGroup" duration="113"/>
+    <testCase name="DashboardComponent should create" duration="407"/>
+    <testCase name="DashboardComponent should initialize form and countries" duration="201"/>
+    <testCase name="DashboardComponent should set language from localStorage on init" duration="115"/>
+    <testCase name="DashboardComponent should set default language to en if no lang in localStorage" duration="98"/>
+    <testCase name="DashboardComponent should update responsiveClass based on breakpoint" duration="98"/>
+    <testCase name="DashboardComponent should load service providers from localStorage" duration="108"/>
+    <testCase name="DashboardComponent should handle null service providers in localStorage" duration="105"/>
+    <testCase name="DashboardComponent should create service provider form group" duration="108"/>
+    <testCase name="DashboardComponent should delete service provider" duration="123"/>
+    <testCase name="DashboardComponent should handle error in deleteServiceProvider" duration="107"/>
+    <testCase name="DashboardComponent should submit valid form" duration="108"/>
+    <testCase name="DashboardComponent should handle invalid form submission" duration="95"/>
+    <testCase name="DashboardComponent should handle specific form validation errors" duration="69"/>
+    <testCase name="DashboardComponent should handle localStorage error in onSubmit" duration="87"/>
+    <testCase name="DashboardComponent should enable edit mode" duration="87"/>
+    <testCase name="DashboardComponent should cancel form" duration="88"/>
+    <testCase name="DashboardComponent should save to localStorage" duration="82"/>
+    <testCase name="DashboardComponent should handle error in saveToLocalStorage" duration="105"/>
+    <testCase name="DashboardComponent should track by provider id" duration="101"/>
+    <testCase name="DashboardComponent should get serviceProvidersArray" duration="95"/>
+    <testCase name="DashboardComponent should handle empty service providers in loadFromLocalStorage" duration="102"/>
+    <testCase name="DashboardComponent should handle invalid JSON in loadFromLocalStorage" duration="97"/>
+    <testCase name="DashboardComponent should handle null provider in createServiceProviderFormGroup" duration="112"/>
   </file>
 </testExecutions>
