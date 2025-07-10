@@ -1,45 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="C:\Angular project-2\code-book-playwright\src\app\main-dashboard-2\main-dashboard-2.component.spec.ts">
-    <testCase name="MainDashboard2Component should create" duration="380"/>
-    <testCase name="MainDashboard2Component should initialize with correct title" duration="135"/>
-    <testCase name="MainDashboard2Component should initialize collapsed signal as false" duration="124"/>
-    <testCase name="MainDashboard2Component should initialize currentLanguage signal as English" duration="121"/>
-    <testCase name="MainDashboard2Component should initialize darkModeValue signal from DarkModeService" duration="115"/>
-    <testCase name="MainDashboard2Component should add languages in constructor" duration="109"/>
-    <testCase name="MainDashboard2Component should set up language in ngOnInit with stored language (en)" duration="113"/>
-    <testCase name="MainDashboard2Component should set up language in ngOnInit with stored language (fr)" duration="107"/>
-    <testCase name="MainDashboard2Component should set up language in ngOnInit with no stored language" duration="112"/>
-    <testCase name="MainDashboard2Component should change language to French" duration="110"/>
-    <testCase name="MainDashboard2Component should change language to English" duration="104"/>
-    <testCase name="MainDashboard2Component should return correct theme aria label" duration="107"/>
-    <testCase name="MainDashboard2Component should return correct color theme aria label" duration="115"/>
-    <testCase name="MainDashboard2Component should toggle fullscreen when not in fullscreen" duration="115"/>
-    <testCase name="MainDashboard2Component should exit fullscreen when in fullscreen" duration="94"/>
-    <testCase name="MainDashboard2Component should handle fullscreen error" duration="110"/>
-    <testCase name="MainDashboard2Component should compute sidenavWidth for mobile" duration="105"/>
-    <testCase name="MainDashboard2Component should compute sidenavWidth for non-mobile collapsed" duration="105"/>
-    <testCase name="MainDashboard2Component should compute sidenavWidth for non-mobile non-collapsed" duration="94"/>
-    <testCase name="MainDashboard2Component should compute sidenavMode for mobile" duration="95"/>
-    <testCase name="MainDashboard2Component should compute sidenavMode for non-mobile" duration="97"/>
-    <testCase name="MainDashboard2Component should compute sidenavOpened for mobile and collapsed" duration="100"/>
-    <testCase name="MainDashboard2Component should compute sidenavOpened for mobile and non-collapsed" duration="90"/>
-    <testCase name="MainDashboard2Component should compute sidenavOpened for non-mobile" duration="93"/>
-    <testCase name="MainDashboard2Component should toggle sidenav collapsed state" duration="98"/>
-    <testCase name="MainDashboard2Component should toggle sidenav when clicking the menu button" duration="105"/>
-    <testCase name="MainDashboard2Component should close sidenav on mobile when clicking content area" duration="107"/>
-    <testCase name="MainDashboard2Component should not close sidenav on non-mobile when clicking content area" duration="96"/>
-    <testCase name="MainDashboard2Component should open mobile menu when clicking mobile menu button" duration="99"/>
-    <testCase name="MainDashboard2Component should toggle dark mode via button toggle group" duration="100"/>
-    <testCase name="MainDashboard2Component should select dark theme from dark mode menu" duration="265"/>
-    <testCase name="MainDashboard2Component should select color theme from color theme menu" duration="190"/>
-    <testCase name="MainDashboard2Component should select language from language menu" duration="139"/>
-    <testCase name="MainDashboard2Component should toggle fullscreen from mobile menu" duration="150"/>
-    <testCase name="MainDashboard2Component should select light mode from mobile menu" duration="147"/>
-    <testCase name="MainDashboard2Component should select dark mode from mobile menu" duration="144"/>
-    <testCase name="MainDashboard2Component should open theme menu from mobile menu" duration="192"/>
-    <testCase name="MainDashboard2Component should open color theme menu from mobile menu" duration="126"/>
-    <testCase name="MainDashboard2Component should open language menu from mobile menu" duration="121"/>
-    <testCase name="MainDashboard2Component should handle invalid auth data in localStorage" duration="160"/>
+    <testCase name="MainDashboard2Component should create" duration="531"/>
+    <testCase name="MainDashboard2Component should initialize with correct title" duration="213"/>
+    <testCase name="MainDashboard2Component should initialize collapsed signal as false" duration="178"/>
+    <testCase name="MainDashboard2Component should initialize currentLanguage signal as English" duration="169"/>
+    <testCase name="MainDashboard2Component should initialize darkModeValue signal from DarkModeService" duration="172"/>
+    <testCase name="MainDashboard2Component should add languages in constructor" duration="152"/>
+    <testCase name="MainDashboard2Component should initialize with default language from localStorage (en)" duration="173"/>
+    <testCase name="MainDashboard2Component should change language to French" duration="162"/>
+    <testCase name="MainDashboard2Component should change language to English" duration="170"/>
+    <testCase name="MainDashboard2Component should return correct theme aria label" duration="158"/>
+    <testCase name="MainDashboard2Component should return correct color theme aria label" duration="152"/>
+    <testCase name="MainDashboard2Component should toggle fullscreen when not in fullscreen" duration="132"/>
+    <testCase name="MainDashboard2Component should exit fullscreen when in fullscreen" duration="127"/>
+    <testCase name="MainDashboard2Component should handle fullscreen error" duration="176"/>
+    <testCase name="MainDashboard2Component should compute sidenavWidth for mobile" duration="191"/>
+    <testCase name="MainDashboard2Component should compute sidenavWidth for non-mobile collapsed" duration="184"/>
+    <testCase name="MainDashboard2Component should compute sidenavWidth for non-mobile non-collapsed" duration="167"/>
+    <testCase name="MainDashboard2Component should compute sidenavMode for mobile" duration="145"/>
+    <testCase name="MainDashboard2Component should compute sidenavMode for non-mobile" duration="136"/>
+    <testCase name="MainDashboard2Component should compute sidenavOpened for mobile and collapsed" duration="138"/>
+    <testCase name="MainDashboard2Component should compute sidenavOpened for mobile and non-collapsed" duration="136"/>
+    <testCase name="MainDashboard2Component should compute sidenavOpened for non-mobile" duration="129"/>
+    <testCase name="MainDashboard2Component should toggle sidenav collapsed state" duration="130"/>
+    <testCase name="MainDashboard2Component should toggle sidenav when clicking the menu button" duration="141"/>
+    <testCase name="MainDashboard2Component should close sidenav on mobile when clicking content area" duration="132"/>
+    <testCase name="MainDashboard2Component should not close sidenav on non-mobile when clicking content area" duration="150"/>
+    <testCase name="MainDashboard2Component should open mobile menu when clicking mobile menu button" duration="137"/>
+    <testCase name="MainDashboard2Component should toggle dark mode via button toggle group" duration="141"/>
+    <testCase name="MainDashboard2Component should select dark theme from dark mode menu" duration="458"/>
+    <testCase name="MainDashboard2Component should select color theme from color theme menu" duration="282"/>
+    <testCase name="MainDashboard2Component should select language from language menu" duration="277"/>
+    <testCase name="MainDashboard2Component should toggle fullscreen from mobile menu" duration="216"/>
+    <testCase name="MainDashboard2Component should select light mode from mobile menu" duration="227"/>
+    <testCase name="MainDashboard2Component should select dark mode from mobile menu" duration="196"/>
+    <testCase name="MainDashboard2Component should open theme menu from mobile menu" duration="200"/>
+    <testCase name="MainDashboard2Component should open color theme menu from mobile menu" duration="200"/>
+    <testCase name="MainDashboard2Component should open language menu from mobile menu" duration="195"/>
+    <testCase name="MainDashboard2Component should handle invalid auth data in localStorage" duration="226"/>
   </file>
 </testExecutions>

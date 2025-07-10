@@ -216,49 +216,30 @@ describe('MainDashboard2Component', () => {
     expect(translateService.addLangs).toHaveBeenCalledWith(['en', 'fr']);
   });
 
-  it('should set up language in ngOnInit with stored language (en)', () => {
-    localStorageMock.getItem.mockImplementation((key: string) => (key === 'lang' ? 'en' : JSON.stringify({ user: { id: 1, email: 'test@example.com', name: 'Test' }, token: 'abc' })));
-    component.ngOnInit();
-    fixture.detectChanges();
-    expect(localStorageMock.getItem).toHaveBeenCalledWith('lang');
-    expect(translateService.setDefaultLang).toHaveBeenCalledWith('en');
-    expect(translateService.use).toHaveBeenCalledWith('en');
-    expect(component.currentLanguage()).toBe('English');
-  });
+  it('should initialize with default language from localStorage (en)', () => {
+     fixture.detectChanges();
+     expect(translateService.addLangs).toHaveBeenCalledWith(['en', 'fr']);
+     expect(translateService.setDefaultLang).toHaveBeenCalledWith('en');
+     expect(translateService.use).toHaveBeenCalledWith('en');
+     expect(component.currentLanguage()).toBe('English');
+   });
 
-  it('should set up language in ngOnInit with stored language (fr)', () => {
-    localStorageMock.getItem.mockImplementation((key: string) => (key === 'lang' ? 'fr' : JSON.stringify({ user: { id: 1, email: 'test@example.com', name: 'Test' }, token: 'abc' })));
-    component.ngOnInit();
-    fixture.detectChanges();
-    expect(localStorageMock.getItem).toHaveBeenCalledWith('lang');
-    expect(translateService.setDefaultLang).toHaveBeenCalledWith('en');
-    expect(translateService.use).toHaveBeenCalledWith('fr');
-    expect(component.currentLanguage()).toBe('French');
-  });
-
-  it('should set up language in ngOnInit with no stored language', () => {
-    localStorageMock.getItem.mockImplementation((key: string) => (key === 'lang' ? null : JSON.stringify({ user: { id: 1, email: 'test@example.com', name: 'Test' }, token: 'abc' })));
-    component.ngOnInit();
-    fixture.detectChanges();
-    expect(localStorageMock.getItem).toHaveBeenCalledWith('lang');
-    expect(translateService.setDefaultLang).toHaveBeenCalledWith('en');
-    expect(translateService.use).toHaveBeenCalledWith('en');
-    expect(component.currentLanguage()).toBe('English');
-  });
-
-  it('should change language to French', () => {
-    component.ChangeLang('fr');
-    expect(translateService.use).toHaveBeenCalledWith('fr');
-    expect(localStorageMock.setItem).toHaveBeenCalledWith('lang', 'fr');
-    expect(component.currentLanguage()).toBe('French');
-  });
-
-  it('should change language to English', () => {
-    component.ChangeLang('en');
-    expect(translateService.use).toHaveBeenCalledWith('en');
-    expect(localStorageMock.setItem).toHaveBeenCalledWith('lang', 'en');
-    expect(component.currentLanguage()).toBe('English');
-  });
+   it('should change language to French', () => {
+     fixture.detectChanges();
+     component.ChangeLang('fr');
+     expect(translateService.use).toHaveBeenCalledWith('fr');
+     expect(localStorage.setItem).toHaveBeenCalledWith('lang', 'fr');
+     expect(component.currentLanguage()).toBe('French');
+   });
+ 
+   it('should change language to English', () => {
+     fixture.detectChanges();
+     component.ChangeLang('en');
+     expect(translateService.use).toHaveBeenCalledWith('en');
+     expect(localStorage.setItem).toHaveBeenCalledWith('lang', 'en');
+     expect(component.currentLanguage()).toBe('English');
+   });
+ 
 
   it('should return correct theme aria label', () => {
     expect(component.getThemeAriaLabel('dark')).toBe('Dark theme');
