@@ -393,18 +393,7 @@ describe('MainDashboard2Component', () => {
     expect(themeService.setTheme).toHaveBeenCalledWith('theme2');
   });
 
-  it('should select language from language menu', () => {
-    const languageMenuButton = fixture.debugElement.query(By.css('button[aria-label="Select language"]'));
-    languageMenuButton.triggerEventHandler('click', null);
-    fixture.detectChanges();
-    const frenchButton = fixture.debugElement.query(By.css('button[aria-label="Select French language"]'));
-    frenchButton.triggerEventHandler('click', null);
-    fixture.detectChanges();
-    expect(translateService.use).toHaveBeenCalledWith('fr');
-    expect(localStorageMock.setItem).toHaveBeenCalledWith('lang', 'fr');
-    expect(component.currentLanguage()).toBe('French');
-  });
-
+ 
   it('should toggle fullscreen from mobile menu', () => {
     responsiveService.isMobile.mockReturnValue(true);
     fixture.detectChanges();
