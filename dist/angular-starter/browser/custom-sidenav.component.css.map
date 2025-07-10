@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["custom-sidenav.component.html"],
+  "sourcesContent": ["\n    .animate-rotate {\n      animation: rotate 0.3s ease-in-out;\n    }\n\n    @keyframes rotate {\n      from {\n        transform: rotate(0deg);\n      }\n      to {\n        transform: rotate(360deg);\n      }\n    }\n  "],
+  "mappings": "AACI,CAAA,eACE,UAAA,OAAA,IAAA,WACF,CAEA,WAHE,OAIA,GACE,UAAA,OAAA,EACF,CACA,GACE,UAAA,OAAA,OACF,CACF",
+  "names": []
+}

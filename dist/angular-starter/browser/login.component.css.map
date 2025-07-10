@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/login/login/login.component.scss", "src/app/login/login/login.component.scss"],
+  "sourcesContent": ["\r\na {\r\n  color: #1e88e5;\r\n}\r\n\r\n.text-red-500 {\r\n  color: #f44336;\r\n}\r\n\r\n", "a {\n  color: #1e88e5;\n}\n\n.text-red-500 {\n  color: #f44336;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJmaWxlOi8vL0M6L0FuZ3VsYXIlMjBwcm9qZWN0LTIvY29kZS1ib29rLXBsYXl3cmlnaHQvc3JjL2FwcC9sb2dpbi9sb2dpbi9sb2dpbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNFOzs7QUFHRjtFQUNFIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbmEge1xyXG4gIGNvbG9yOiAjMWU4OGU1O1xyXG59XHJcblxyXG4udGV4dC1yZWQtNTAwIHtcclxuICBjb2xvcjogI2Y0NDMzNjtcclxufVxyXG5cclxuIl19 */"],
+  "mappings": "AACA,EACE,MAAA,OCAF,CDGA,CAAA,aACE,MAAA,OCAF",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/dashboard-1/dashboard-1.component.ts", "src/app/pages/dashboard-1/dashboard-1.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-dashboard-1',\r\n  imports: [],\r\n  templateUrl: './dashboard-1.component.html',\r\n  styleUrl: './dashboard-1.component.scss'\r\n})\r\nexport class Dashboard1Component {\r\n\r\n}\r\n", "<p>dashboard-1 works!</p>\r\n"],
+  "mappings": "iEAQA,IAAaA,GAAmB,IAAA,CAA1B,MAAOA,CAAmB,4CAAnBA,EAAmB,2BAAnBA,EAAmBC,UAAA,CAAA,CAAA,iBAAA,CAAA,EAAAC,MAAA,EAAAC,KAAA,EAAAC,SAAA,SAAAC,EAAAC,EAAA,CAAAD,EAAA,ICRhCE,EAAA,EAAA,GAAA,EAAGC,EAAA,EAAA,oBAAA,EAAkBC,EAAA,6BDQRT,CAAmB,GAAA",
+  "names": ["Dashboard1Component", "selectors", "decls", "vars", "template", "rf", "ctx", "\u0275\u0275elementStart", "\u0275\u0275text", "\u0275\u0275elementEnd"]
+}
