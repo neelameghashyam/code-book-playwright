@@ -180,7 +180,7 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
           this.cdr.markForCheck();
         } catch (error) {
           this.toastr.error('Failed to add user', 'Error');
-          console.error('openAddDialog: addUser failed', error);
+          // console.error('openAddDialog: addUser failed', error);
         }
       } else {
         console.warn('openAddDialog: invalid or no result', result);
@@ -205,7 +205,7 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
           this.cdr.markForCheck();
         } catch (error) {
           this.toastr.error('Failed to update user', 'Error');
-          console.error('openEditDialog: updateUser failed', error);
+          // console.error('openEditDialog: updateUser failed', error);
         }
       }
     });
@@ -221,7 +221,7 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
       this.cdr.markForCheck();
     } catch (error) {
       this.toastr.error('Failed to delete user', 'Error');
-      console.error('deleteUser: delete failed', error);
+      // console.error('deleteUser: delete failed', error);
     }
   }
 
@@ -262,7 +262,7 @@ export class MatComponentsComponent implements AfterViewInit, OnDestroy {
       this.cdr.markForCheck();
     } catch (error) {
       this.toastr.error('Failed to refresh table', 'Error');
-      console.error('refreshTable: loadUsers failed', error);
+      // console.error('refreshTable: loadUsers failed', error);
     }
   }
 

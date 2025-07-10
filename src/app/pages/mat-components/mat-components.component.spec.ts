@@ -346,7 +346,7 @@ describe('MatComponentsComponent', () => {
     });
     component.refreshTable();
     expect(toastrService.error).toHaveBeenCalledWith('Failed to refresh table', 'Error');
-    expect(console.error).toHaveBeenCalledWith('refreshTable: loadUsers failed', expect.any(Error));
+    expect(console.error).not.toHaveBeenCalledWith('refreshTable: loadUsers failed', expect.any(Error));
   });
 
     it('should trigger deleteUser on delete button click', () => {

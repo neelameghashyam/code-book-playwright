@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="C:\Angular project-2\code-book-playwright\src\app\pages\dashboard\service-provider\service-provider.component.spec.ts">
-    <testCase name="ServiceProviderComponent should create" duration="303"/>
-    <testCase name="ServiceProviderComponent should initialize form and countries" duration="87"/>
-    <testCase name="ServiceProviderComponent should patch form with provider data" duration="131"/>
-    <testCase name="ServiceProviderComponent should set language from localStorage on init" duration="80"/>
-    <testCase name="ServiceProviderComponent should set default language to en if no lang in localStorage" duration="69"/>
-    <testCase name="ServiceProviderComponent should update responsiveClass based on breakpoint" duration="88"/>
-    <testCase name="ServiceProviderComponent should save valid new provider" duration="103"/>
-    <testCase name="ServiceProviderComponent should save valid new provider with generated ID" duration="106"/>
-    <testCase name="ServiceProviderComponent should handle invalid form in saveProvider" duration="75"/>
-    <testCase name="ServiceProviderComponent should handle localStorage error in saveProvider" duration="73"/>
-    <testCase name="ServiceProviderComponent should handle invalid localStorage data in saveProvider" duration="76"/>
-    <testCase name="ServiceProviderComponent should update existing provider" duration="74"/>
-    <testCase name="ServiceProviderComponent should handle provider ID not found" duration="76"/>
-    <testCase name="ServiceProviderComponent should close popup" duration="87"/>
-    <testCase name="ServiceProviderComponent should cancel form and close popup" duration="99"/>
-    <testCase name="ServiceProviderComponent should cancel form without closing popup" duration="94"/>
-    <testCase name="ServiceProviderComponent should initialize without provider data" duration="90"/>
+  <file path="C:\Angular project-2\code-book-playwright\src\app\pages\mat-components\mat-components.component.spec.ts">
+    <testCase name="MatComponentsComponent should create the component" duration="649"/>
+    <testCase name="MatComponentsComponent Initial State should initialize filterValues with default values" duration="341"/>
+    <testCase name="MatComponentsComponent Initial State should initialize roles array" duration="282"/>
+    <testCase name="MatComponentsComponent Initial State should initialize displayedColumns" duration="266"/>
+    <testCase name="MatComponentsComponent Initial State should initialize dataSource as MatTableDataSource" duration="255"/>
+    <testCase name="MatComponentsComponent Initial State should initialize allEmails and filteredEmails" duration="253"/>
+    <testCase name="MatComponentsComponent Constructor and Effect should set up effect and update dataSource" duration="259"/>
+    <testCase name="MatComponentsComponent Constructor and Effect should not update paginator in effect if paginator is undefined" duration="287"/>
+    <testCase name="MatComponentsComponent createFilterPredicate should return false when global filter does not match" duration="222"/>
+    <testCase name="MatComponentsComponent createFilterPredicate should return false when firstName filter does not match" duration="317"/>
+    <testCase name="MatComponentsComponent createFilterPredicate should return false when email filter does not match" duration="263"/>
+    <testCase name="MatComponentsComponent createFilterPredicate should return false when role filter does not match" duration="267"/>
+    <testCase name="MatComponentsComponent createFilterPredicate should return false when date range does not match" duration="211"/>
+    <testCase name="MatComponentsComponent createFilterPredicate should handle null fields in user data" duration="311"/>
+    <testCase name="MatComponentsComponent trackById should return user id" duration="219"/>
+    <testCase name="MatComponentsComponent Template Rendering should render toolbar with title and buttons" duration="301"/>
+    <testCase name="MatComponentsComponent Template Rendering should render error message when error exists" duration="271"/>
+    <testCase name="MatComponentsComponent Template Rendering should render loading spinner when isLoading is true" duration="288"/>
+    <testCase name="MatComponentsComponent Template Rendering should render filters when not loading" duration="322"/>
+    <testCase name="MatComponentsComponent Template Rendering should render table with correct columns and data" duration="250"/>
+    <testCase name="MatComponentsComponent Template Rendering should render paginator with correct options" duration="300"/>
+    <testCase name="MatComponentsComponent Template Rendering should trigger refreshTable on refresh button click" duration="220"/>
+    <testCase name="MatComponentsComponent Template Rendering should trigger deleteUser on delete button click" duration="311"/>
+    <testCase name="MatComponentsComponent Template Rendering should update global filter and call applyFilter" duration="237"/>
+    <testCase name="MatComponentsComponent Template Rendering should update firstName filter and call applyFilter" duration="286"/>
+    <testCase name="MatComponentsComponent Template Rendering should update email filter and call applyFilter" duration="256"/>
+    <testCase name="MatComponentsComponent Template Rendering should update role filter and call applyFilter" duration="241"/>
+    <testCase name="MatComponentsComponent Template Rendering should update date range filter and call applyFilter" duration="246"/>
   </file>
 </testExecutions>
