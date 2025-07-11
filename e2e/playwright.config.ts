@@ -5,7 +5,7 @@ import { defineConfig } from '@playwright/test';
        fullyParallel: true,
        reporter: 'html',
        use: {
-         baseURL: 'http://localhost:4200',
+         baseURL: 'https://angular-code-book.netlify.app',
          browserName: 'chromium',
        },
      });
