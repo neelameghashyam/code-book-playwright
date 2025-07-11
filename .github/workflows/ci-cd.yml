@@ -1,3 +1,4 @@
+
 name: CI/CD Pipeline
 
 on:
@@ -16,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20.19
           cache: 'npm'
 
       - name: Install dependencies
@@ -30,12 +31,11 @@ jobs:
           if ! jq '.compilerOptions.esModuleInterop' tsconfig.json | grep -q true; then
             jq '.compilerOptions.esModuleInterop = true' tsconfig.json > tmp.json && mv tmp.json tsconfig.json
           fi
-
       - name: Install jest-silent-reporter
         run: npm install --save-dev jest-silent-reporter --legacy-peer-deps
 
       - name: Run unit tests with coverage
-        run: npm run test:coverage -- --watch=false --verbose # Use --verbose for debugging
+        run: npm run test:coverage -- --watch=false --verbose
         env:
           JEST_SILENT_REPORTER_SHOW_SUMMARY: false
           JEST_SILENT_REPORTER_SHOW_COVERAGE: true
@@ -49,41 +49,46 @@ jobs:
       - name: Build Angular app
         run: npm run build -- --configuration=production
 
-  sonar:
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: dist/angular-starter
+
+  sonar-qube:
     needs: build-test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Download coverage report
-        uses: actions/download-artifact@v4
         with:
-          name: coverage-report
-          path: coverage/
+          fetch-depth: 0  # Shallow clones should be disabled for better analysis
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20.19
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
-      - name: Run SonarQube scan
-        uses: SonarSource/sonarqube-scan-action@v3
+      - name: Run SonarQube Scanner
+        uses: sonarsource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: b6d5941dfedcb1b62a5a6cdf4921ad0c954f06c3
+          SONAR_HOST_URL: https://sonarcloud.io
         with:
           args: >
-            -Dsonar.projectKey=code-book
+            -Dsonar.projectKey=neelameghashyam_code-book-playwright
+            -Dsonar.organization=neelameghashyam
             -Dsonar.sources=src
             -Dsonar.tests=src
+            -Dsonar.test.inclusions=**/*.spec.ts
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-
+            -Dsonar.exclusions=**/node_modules/**,**/dist/**
   deploy:
-    needs: [build-test, sonar]
+    needs: sonar-qube
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -92,17 +97,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20.19
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
-      - name: Build Angular app
-        run: npm run build -- --configuration=production
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: dist/angular-starter
 
       - name: Deploy to Netlify
-        run: npx netlify deploy --dir=dist/code-book --prod
+        run: npx netlify deploy --dir=dist/angular-starter/browser --prod
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: nfp_TvXtA8181JNEU9yex1c82aQN6k1XCwis0de9
+          NETLIFY_SITE_ID: 33ce5c86-9de6-41e0-952f-b0c4f60c0a67
