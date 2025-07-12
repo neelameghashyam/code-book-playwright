@@ -136,7 +136,7 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         env:
-          PLAYWRIGHT_TEST_BASE_URL: https://angular-code-book.netlify.app  # Replace with actual deployed URL
+          PLAYWRIGHT_TEST_BASE_URL: https://angular-code-book.netlify.app  
 
       - name: Upload Playwright test report
         if: always()
